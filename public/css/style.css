@@ -1,0 +1,65 @@
+* {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root {
+    --bg: #4546a0;
+}
+
+body {
+    background-color: #333;
+}
+
+.container-fluid {
+    max-width: 1140px;
+}
+nav .container-fluid .navbar-brand {
+    color: #4546a0;
+}
+
+.section {
+    background-image: linear-gradient(
+            to top,
+            rgb(255, 255, 255) 0%,
+            transparent
+        ),
+        url("../image/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    padding-top: 50px;
+}
+
+.section-container {
+    background-color: #ffffff67;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    height: 410px;
+    width: 550px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.section button:hover {
+    background-color: #4546a0;
+}
+
+.kegiatan {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 100px 0px;
+}
+
+footer .container {
+    max-width: 1140px;
+    margin: auto;
+}
+
+.about {
+    background-color: var(--bg);
+}
+.about .container {
+    max-width: 1140px;
+}
