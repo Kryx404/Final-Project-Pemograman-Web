@@ -6,6 +6,7 @@
 
 :root {
     --bg: #4546a0;
+    --bg2: #3b3c86;
 }
 
 body {
@@ -17,6 +18,12 @@ body {
 }
 nav .container-fluid .navbar-brand {
     color: #4546a0;
+}
+
+.nav-item a:hover {
+    color: white !important;
+    background-color: var(--bg);
+    border-radius: 5px;
 }
 
 .section {
@@ -42,8 +49,13 @@ nav .container-fluid .navbar-brand {
     -webkit-backdrop-filter: blur(10px);
 }
 
+.section button {
+    color: white;
+    background-color: var(--bg);
+}
 .section button:hover {
-    background-color: #4546a0;
+    color: white;
+    background-color: var(--bg2);
 }
 
 .kegiatan {

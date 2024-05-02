@@ -3,21 +3,21 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('landing',[
+    return view('landing-page.landing',[
         "title" => "home"
     ]
     );
 });
 
 Route::get('/login', function () {
-    return view('login',[
+    return view('landing-page.login',[
         "title" => "login"
     ]
     );
 });
 
 Route::get('/penggunaan', function () {
-    return view('penggunaan',[
+    return view('landing-page.penggunaan',[
         "title" => "penggunaan"
     ]
     );

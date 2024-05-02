@@ -18,10 +18,13 @@
 
 <body>
 
-@include('partials.navbar')
+    {{-- @include('landing-page.partials.navbar')
+    @include('landing-page.partials.footer') --}}
 
-@yield('landing')
-@yield('login')
+    @yield('landing')
+    @yield('login')
+    @yield('penggunaan')
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
