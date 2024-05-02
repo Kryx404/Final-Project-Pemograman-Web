@@ -42,5 +42,11 @@ Route::get('/user', function () {
     ]
     );
 });
+Route::get('/pembayaran', function () {
+    return view('user.pembayaran',[
+        "title" => "pembayaran"
+    ]
+    );
+});
 
 // end user

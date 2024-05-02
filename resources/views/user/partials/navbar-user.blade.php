@@ -16,7 +16,7 @@
                     <a class="nav-link {{ $title === 'home' ? 'active' : '' }}" href="/user">Home</a>
                 </li>
                 <li class="nav-item pe-3">
-                    <a class="nav-link {{ $title === 'login' ? 'active' : '' }}" href="/pembayaran  ">Pembayaran</a>
+                    <a class="nav-link {{ $title === 'login' ? 'active' : '' }}" href="/pembayaran">Pembayaran</a>
                 </li>
                 <li class="nav-item">
                     <a class="button nav-link {{ $title === 'login' ? 'active' : '' }}" href="/login">Logout</a>
