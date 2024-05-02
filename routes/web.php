@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+// start landing page
 Route::get('/', function () {
     return view('landing-page.landing',[
         "title" => "home"
@@ -22,6 +23,7 @@ Route::get('/penggunaan', function () {
     ]
     );
 });
+// end landing page
 
 // Route::get('/login', [LoginController::class, 'index']);
 
@@ -32,9 +34,13 @@ Route::get('/admin', function () {
     );
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard-user',[
-        "title" => "dasboard"
+// start user
+Route::get('/user', function () {
+    return view('user.homepage',[
+        "title" => "homepage",
+        "nama" => "Kelompok 4"
     ]
     );
 });
+
+// end user
