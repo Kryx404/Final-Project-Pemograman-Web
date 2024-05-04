@@ -27,13 +27,6 @@ Route::get('/penggunaan', function () {
 
 // Route::get('/login', [LoginController::class, 'index']);
 
-Route::get('/admin', function () {
-    return view('dashboard-admin',[
-        "title" => "admin"
-    ]
-    );
-});
-
 // start user
 Route::get('/user', function () {
     return view('user.homepage',[
@@ -50,3 +43,29 @@ Route::get('/pembayaran', function () {
 });
 
 // end user
+
+// start admin
+Route::get('/admin', function () {
+    return view('admin.warga',[
+        "title" => "admin"
+    ]
+    );
+});
+Route::get('/admin/tagihan', function () {
+    return view('admin.tagihan',[
+        "title" => "tagihan"
+    ]
+    );
+});
+Route::get('/admin/data-warga', function () {
+    return view('admin.warga',[
+        "title" => "data-warga"
+    ]
+    );
+});
+Route::get('/admin/data-baru', function () {
+    return view('admin.data-baru',[
+        "title" => "data-baru"
+    ]
+    );
+});

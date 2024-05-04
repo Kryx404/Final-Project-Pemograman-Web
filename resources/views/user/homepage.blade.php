@@ -50,7 +50,7 @@
                 </tr>
             </tbody>
         </table>
-        <button class="btn rounded-5 px-4 py-2 mt-3" onclick="window.location.href='/login';">Bayar Sekarang</button>
+        <button class="btn rounded-5 px-4 py-2 mt-3" onclick="window.location.href='/pembayaran';">Bayar Sekarang</button>
 
     </div>
 
