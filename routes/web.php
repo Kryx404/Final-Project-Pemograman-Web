@@ -69,3 +69,12 @@ Route::get('/admin/data-baru', function () {
     ]
     );
 });
+// end admin
+
+// start pengelola
+Route::get('/pengelola', function () {
+    return view('pengelola.dashboard',[
+        "title" => "pengelola"
+    ]
+    );
+});

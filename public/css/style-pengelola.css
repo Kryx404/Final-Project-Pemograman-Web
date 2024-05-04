@@ -1,0 +1,67 @@
+* {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root {
+    --bg: #4546a0;
+    --bg2: #3b3c86;
+}
+
+main {
+    /* background-color: #333; */
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.container-fluid {
+    max-width: 1140px;
+}
+nav .container-fluid .navbar-brand {
+    color: #4546a0;
+}
+
+.nav-item a:hover {
+    color: white !important;
+    background-color: var(--bg);
+    border-radius: 5px;
+}
+
+.section {
+    max-width: 1140px;
+    margin: 0 auto;
+    height: 500px;
+    padding-top: 50px;
+}
+
+.section-container {
+    max-width: 1140px;
+}
+
+.section button {
+    color: white;
+    background-color: var(--bg);
+}
+.section button:hover {
+    color: white;
+    background-color: var(--bg2);
+}
+
+.kegiatan {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 100px 0px;
+}
+
+footer .container {
+    max-width: 1140px;
+    margin: auto;
+}
+
+.about {
+    background-color: var(--bg);
+}
+.about .container {
+    max-width: 1140px;
+}
