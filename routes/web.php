@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserDashboardController;
 
 // start landing page
 Route::get('/', function () {
@@ -10,12 +12,8 @@ Route::get('/', function () {
     );
 });
 
-Route::get('/login', function () {
-    return view('landing-page.login',[
-        "title" => "login"
-    ]
-    );
-});
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'authenticate']);
 
 Route::get('/penggunaan', function () {
     return view('landing-page.penggunaan',[
@@ -25,16 +23,10 @@ Route::get('/penggunaan', function () {
 });
 // end landing page
 
-// Route::get('/login', [LoginController::class, 'index']);
 
 // start user
-Route::get('/user', function () {
-    return view('user.homepage',[
-        "title" => "homepage",
-        "nama" => "Kelompok 4"
-    ]
-    );
-});
+Route::get('/user', [UserDashboardController::class, 'index'])->name('user');
+
 Route::get('/pembayaran', function () {
     return view('user.pembayaran',[
         "title" => "pembayaran"

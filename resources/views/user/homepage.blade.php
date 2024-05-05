@@ -10,11 +10,11 @@
             @php
                 $jam = date('H');
                 if ($jam < '12') {
-                    echo '<h2>Selamat Pagi: {{ $nama }} </h2>';
+                    echo "<h2>Selamat Pagi: $nama </h2>";
                 } elseif ($jam < '18') {
-                    echo '<h2>Selamat Siang: {{ $nama }} </h2>';
+                    echo "<h2>Selamat Siang: $nama </h2>";
                 } else {
-                    echo '<h2>Selamat Malam: {{ $nama }} </h2>';
+                    echo "<h2>Selamat Malam: $nama </h2>";
                 }
             @endphp
             <p class="pb-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, repudiandae autem velit et
