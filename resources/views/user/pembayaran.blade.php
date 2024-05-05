@@ -3,9 +3,11 @@
 @section('pembayaran')
     {{-- menampilkan navbar --}}
     @include('user.partials.navbar-user')
+    {{-- css --}}
+    <link rel="stylesheet" href="{{ asset('css/style-user.css') }}">
 
-    <div class="container">
-        <main>
+    <main>
+        <div class="container">
             <div class="py-5 text-center">
                 {{-- <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72"
                     height="57"> --}}
@@ -50,19 +52,18 @@
 
                             <div class="col-12">
                                 <label for="address2" class="form-label">Upload Bukti Pembayaran<span
-                                        class="text-muted">(Wajib sertakan bukti pembayaran)</span></label>
+                                        class="text-muted">(Wajib
+                                        sertakan bukti pembayaran)</span></label>
                                 <input type="file" class="form-control" id="bukti" accept="image/*">
                             </div>
                             <hr class="my-4">
 
-
-                            <button class="w-100 btn btn-primary btn-lg" type="submit">Bayar</button>
+                                <button class="w-100 btn btn-lg" type="submit">Bayar</button>
                     </form>
                 </div>
             </div>
-        </main>
-
-    </div>
+        </div>
+    </main>
 
 
 

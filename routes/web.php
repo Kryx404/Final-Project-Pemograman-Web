@@ -2,37 +2,24 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\UserDashboardController;
 
 // start landing page
-Route::get('/', function () {
-    return view('landing-page.landing',[
-        "title" => "home"
-    ]
-    );
-});
+Route::get('/', [LandingPageController::class, 'homepage']);
+Route::get('/penggunaan', [LandingPageController::class, 'penggunaan']);
 
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 
-Route::get('/penggunaan', function () {
-    return view('landing-page.penggunaan',[
-        "title" => "penggunaan"
-    ]
-    );
-});
+Route::post('/logout', [LoginController::class, 'logout']);
+
 // end landing page
 
 
 // start user
-Route::get('/user', [UserDashboardController::class, 'index'])->name('user');
-
-Route::get('/pembayaran', function () {
-    return view('user.pembayaran',[
-        "title" => "pembayaran"
-    ]
-    );
-});
+Route::get('/user', [UserDashboardController::class, 'index'])->name('user')->middleware('auth');
+Route::get('/pembayaran', [UserDashboardController::class, 'pembayaran'])->middleware('auth');
 
 // end user
 

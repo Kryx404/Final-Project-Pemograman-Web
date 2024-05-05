@@ -20,7 +20,8 @@
                         Penggunaan</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $title === 'login' ? 'active' : '' }}" href="/login">Akun</a>
+                    <a class="nav-link {{ $title === 'login' ? 'active' : '' }}" href="/login"><i
+                            class="bi bi-box-arrow-in-right me-2"></i>Masuk</a>
                 </li>
             </ul>
         </div>

@@ -19,8 +19,12 @@
                     <a class="nav-link {{ $title === 'login' ? 'active' : '' }}" href="/pembayaran">Pembayaran</a>
                 </li>
                 <li class="nav-item">
-                    <a class="button nav-link {{ $title === 'login' ? 'active' : '' }}" href="/login">Logout</a>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button class="nav-link button"><i class="bi bi-box-arrow-right me-2"></i>Keluar</button>
+                    </form>
                 </li>
+
             </ul>
         </div>
     </div>

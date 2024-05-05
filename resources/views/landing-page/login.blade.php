@@ -1,4 +1,6 @@
 @extends('landing-page.layout.main')
+
+
 @section('login')
     <link rel="stylesheet" href="css/style-login.css">
 
@@ -11,9 +13,6 @@
         {{ session('loginError') }}
     </div>
 @endif
-
-
-
 
         <form action="/login" method="post">
             @csrf

@@ -13,4 +13,10 @@ class UserDashboardController extends Controller
             "nama" => "Kelompok 4"
         ]);
     }
+    public function pembayaran()
+    {
+        return view('user.pembayaran', [
+            "title" => "pembayaran"
+        ]);
+    }
 }

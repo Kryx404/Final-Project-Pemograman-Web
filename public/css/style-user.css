@@ -10,7 +10,7 @@
 }
 
 body {
-    background-color: #333;
+    /* background-color: #333; */
 }
 
 .container-fluid {
@@ -37,13 +37,13 @@ nav .container-fluid .navbar-brand {
     max-width: 1140px;
 }
 
-.section button {
-    color: white;
-    background-color: var(--bg);
+.btn {
+    color: white !important;
+    background-color: var(--bg) !important;
 }
-.section button:hover {
-    color: white;
-    background-color: var(--bg2);
+.btn:hover {
+    color: white !important;
+    background-color: var(--bg2) !important;
 }
 
 .kegiatan {
