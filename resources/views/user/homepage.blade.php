@@ -11,11 +11,11 @@
                 @php
                     $jam = date('H');
                     if ($jam < '12') {
-                        echo '<h2>Selamat Pagi: ' . Auth::user()->username . ' </h2>';
+                        echo '<h2>Selamat Pagi: ' . Auth::user()->nama . ' </h2>';
                     } elseif ($jam < '18') {
-                        echo '<h2>Selamat Siang: ' . Auth::user()->username . ' </h2>';
+                        echo '<h2>Selamat Siang: ' . Auth::user()->nama . ' </h2>';
                     } else {
-                        echo '<h2>Selamat Malam: ' . Auth::user()->username . ' </h2>';
+                        echo '<h2>Selamat Malam: ' . Auth::user()->nama . ' </h2>';
                     }
                 @endphp
                 <p class="pb-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, repudiandae autem velit
@@ -37,7 +37,7 @@
             <div class="section-container pb-3 d-flex flex-column align-items-start text-start mt-5">
                 <h2>Tagihan</h2>
             </div>
-            <table class="table table-striped table-sm ">
+            <table class="table table-striped table-sm " style="back">
                 <thead>
                     <tr>
                         <th scope="col">Bulan</th>

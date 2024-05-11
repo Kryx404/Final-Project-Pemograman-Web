@@ -10,7 +10,6 @@ class UserDashboardController extends Controller
     {
         return view('user.homepage', [
             "title" => "homepage",
-            "nama" => "Kelompok 4"
         ]);
     }
     public function pembayaran()

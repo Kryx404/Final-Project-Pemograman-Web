@@ -4,56 +4,59 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\PengelolaDashboardController;
+
 
 // start landing page
-Route::get('/', [LandingPageController::class, 'homepage']);
-Route::get('/penggunaan', [LandingPageController::class, 'penggunaan']);
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', [LandingPageController::class, 'homepage']);
+    Route::get('/penggunaan', [LandingPageController::class, 'penggunaan']);
+});
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 
 Route::post('/logout', [LoginController::class, 'logout']);
-
 // end landing page
 
 
 // start user
-Route::get('/user', [UserDashboardController::class, 'index'])->name('user')->middleware('auth');
-Route::get('/pembayaran', [UserDashboardController::class, 'pembayaran'])->middleware('auth');
+Route::middleware(['auth'])->group(function () {
 
+    Route::get('/user', [UserDashboardController::class, 'index'])->name('user')->middleware('auth');
+    Route::get('/pembayaran', [UserDashboardController::class, 'pembayaran'])->middleware('auth');
+});
 // end user
 
+
+
+
 // start admin
-Route::get('/admin', function () {
-    return view('admin.warga',[
-        "title" => "admin"
-    ]
-    );
-});
-Route::get('/admin/tagihan', function () {
-    return view('admin.tagihan',[
-        "title" => "tagihan"
-    ]
-    );
-});
-Route::get('/admin/data-warga', function () {
-    return view('admin.warga',[
-        "title" => "data-warga"
-    ]
-    );
-});
-Route::get('/admin/data-baru', function () {
-    return view('admin.data-baru',[
-        "title" => "data-baru"
-    ]
-    );
-});
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/admin', [AdminDashboardController::class, 'index']);
+    // crud
+Route::resource('/admin', AdminDashboardController::class,);
+
+    Route::get('/admin/tagihan', [AdminDashboardController::class, 'tagihan']);
+    Route::get('/admin/data-warga', [AdminDashboardController::class, 'datawarga']);
+
+    Route::get('/admin/data-baru', [AdminDashboardController::class, 'databaru']);
+    Route::post('/admin/data-baru', [AdminDashboardController::class, 'store'])->name('admin.data-baru.store');
+
+    Route::delete('/admin/data-baru/{id}', [AdminDashboardController::class, 'destroy'])->name('admin.data-baru.destroy');
+})->name('admin');
+// Route::middleware(['auth', 'UserAkses:admin'])->group(function () {
+
+//     Route::get('/admin', [AdminDashboardController::class, 'index']);
+//     Route::get('/admin/tagihan', [AdminDashboardController::class, 'tagihan']);
+//     Route::get('/admin/data-warga', [AdminDashboardController::class, 'datawarga']);
+//     Route::get('/admin/data-baru', [AdminDashboardController::class, 'databaru']);
+// })->name('admin')->middleware('auth');
 // end admin
 
 // start pengelola
-Route::get('/pengelola', function () {
-    return view('pengelola.dashboard',[
-        "title" => "pengelola"
-    ]
-    );
-});
+Route::get('/pengelola', [PengelolaDashboardController::class, 'pengelola']);
+// end pengelola
+

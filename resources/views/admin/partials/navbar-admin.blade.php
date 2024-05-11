@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light p-3">
     <div class="container-fluid p-0">
         <!-- Logo or brand on the left -->
-        <a class="navbar-brand" href="/admin/tagihan">
+        <a class="navbar-brand" href="/admin">
             <h3 class="fw-bold fst-italic">Trash-P</h3>
         </a>
         <!-- Toggler/collapsibe Button -->
@@ -16,10 +16,13 @@
                     <a class="nav-link {{ $title === 'home' ? 'active' : '' }}" href="/admin/tagihan">Tagihan</a>
                 </li>
                 <li class="nav-item pe-3">
-                    <a class="nav-link {{ $title === 'login' ? 'active' : '' }}" href="/admin/data-warga">Data Warga</a>
+                    <a class="nav-link {{ $title === 'login' ? 'active' : '' }}" href="/admin">Data Warga</a>
                 </li>
                 <li class="nav-item">
-                    <a class="button nav-link {{ $title === 'login' ? 'active' : '' }}" href="/login">Logout</a>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button class="nav-link button"><i class="bi bi-box-arrow-right me-2"></i>Keluar</button>
+                    </form>
                 </li>
             </ul>
         </div>
