@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item pe-3">
-                    <a class="nav-link {{ $title === 'home' ? 'active' : '' }}" href="/admin/tagihan">Tagihan</a>
+                    <a class="nav-link {{ $title === 'home' ? 'active' : '' }}" href="{{ route('admin.tagihan') }}">Tagihan</a>
                 </li>
                 <li class="nav-item pe-3">
                     <a class="nav-link {{ $title === 'login' ? 'active' : '' }}" href="/admin">Data Warga</a>
@@ -21,7 +21,9 @@
                 <li class="nav-item">
                     <form action="/logout" method="post">
                         @csrf
-                        <button class="nav-link button"><i class="bi bi-box-arrow-right me-2"></i>Keluar</button>
+                        <button class="bg-transparent border-0">
+                        <a class="nav-link button"><i class="bi bi-box-arrow-right me-2"></i>Keluar</a>
+                    </button>
                     </form>
                 </li>
             </ul>

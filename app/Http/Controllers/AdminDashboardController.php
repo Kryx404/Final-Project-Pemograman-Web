@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DataWarga;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -28,13 +26,28 @@ class AdminDashboardController extends Controller
         ]
         );
     }
-    public function datawarga()
+
+    public function edit($id)
     {
-        return view('admin.warga',[
-            "title" => "data-warga"
-        ]
-        );
+        $warga = User::findorfail($id);
+
+        return view ('admin.ubah-data', compact('warga'), [
+            "title" => "edit-data",
+        ]);
+
     }
+
+    public function update(Request $request, $id)
+    {
+        $warga = User::findorfail($id);
+        $warga->update($request->all());
+
+        Session::flash('success', 'Data baru berhasil diedit.');
+        return redirect('/admin');
+    }
+
+
+
     public function show()
     {
 
@@ -53,12 +66,10 @@ class AdminDashboardController extends Controller
     {
         // Validasi data yang dikirimkan dari form
         $validatedData = $request->validate([
-            // Atur aturan validasi sesuai kebutuhan Anda
             'nama' => 'required',
             'username' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
-            // ...
         ]);
 
         // Simpan data baru ke dalam tabel users

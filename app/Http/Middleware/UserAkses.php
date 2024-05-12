@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\Authenticate;
 
+
 class UserAkses
 {
     /**
@@ -15,13 +16,15 @@ class UserAkses
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $role): Response
-    {
-        if(Auth()->user()->role == $role){
 
+     public function handle(Request $request, Closure $next)
+    {
+        $userRole = $request->session()->get('role');
+
+        if ($userRole === 'admin' || $userRole === 'user') {
             return $next($request);
         }
 
-        return response()->json(['anda tidak diperbolehkan akses halaman ini']);
+        return response()->json(['message' => 'Anda tidak diperbolehkan mengakses halaman ini.'], 403);
     }
 }

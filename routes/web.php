@@ -6,6 +6,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\PengelolaDashboardController;
+use App\Http\Controllers\WargaController;
 
 
 // start landing page
@@ -30,31 +31,25 @@ Route::middleware(['auth'])->group(function () {
 // end user
 
 
-
-
 // start admin
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/admin', [AdminDashboardController::class, 'index']);
     // crud
-Route::resource('/admin', AdminDashboardController::class,);
 
-    Route::get('/admin/tagihan', [AdminDashboardController::class, 'tagihan']);
+    Route::get('/admin/tagihan', [AdminDashboardController::class, 'tagihan'])->name('admin.tagihan');
     Route::get('/admin/data-warga', [AdminDashboardController::class, 'datawarga']);
 
-    Route::get('/admin/data-baru', [AdminDashboardController::class, 'databaru']);
+    Route::get('/admin/ubah-data/{id}', [AdminDashboardController::class, 'edit'])->name('admin.edit-data');
+    Route::post('/admin/ubah-data/{id}', [AdminDashboardController::class, 'update'])->name('admin.edit-data.update');
+
+    Route::resource('/admin', AdminDashboardController::class,);
     Route::post('/admin/data-baru', [AdminDashboardController::class, 'store'])->name('admin.data-baru.store');
-
     Route::delete('/admin/data-baru/{id}', [AdminDashboardController::class, 'destroy'])->name('admin.data-baru.destroy');
-})->name('admin');
-// Route::middleware(['auth', 'UserAkses:admin'])->group(function () {
 
-//     Route::get('/admin', [AdminDashboardController::class, 'index']);
-//     Route::get('/admin/tagihan', [AdminDashboardController::class, 'tagihan']);
-//     Route::get('/admin/data-warga', [AdminDashboardController::class, 'datawarga']);
-//     Route::get('/admin/data-baru', [AdminDashboardController::class, 'databaru']);
-// })->name('admin')->middleware('auth');
+})->name('admin');
 // end admin
+
 
 // start pengelola
 Route::get('/pengelola', [PengelolaDashboardController::class, 'pengelola']);

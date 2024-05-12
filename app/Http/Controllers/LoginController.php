@@ -23,18 +23,19 @@ class LoginController extends Controller
             'password' => ['required', 'min:8', 'max:72'],
         ]);
 
-        // if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            if ($user->role == 'admin') {
+                return redirect('/admin')->with('role', 'admin');
+            } elseif ($user->role == 'user') {
+                return redirect('/user')->with('role', 'user');
+            }
+        }
+         // if (Auth::attempt($credentials)) {
         //     $request->session()->regenerate();
         //     return redirect()->route('user');
         // }
-        if (Auth::attempt($credentials)) {
-           if(Auth::user()->role == 'admin'){
-            return redirect('/admin');
-           }
-           elseif(Auth::user()->role == 'user'){
-            return redirect('/user');
-           }
-        }
         return back()->with('loginError', 'Login Gagal');
     }
 

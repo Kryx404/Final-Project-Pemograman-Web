@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\WargaBaru;
+use App\Models\Warga;
 use Illuminate\Auth\Access\Response;
 
-class WargaBaruPolicy
+class WargaPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class WargaBaruPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, WargaBaru $wargaBaru): bool
+    public function view(User $user, Warga $warga): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class WargaBaruPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, WargaBaru $wargaBaru): bool
+    public function update(User $user, Warga $warga): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class WargaBaruPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, WargaBaru $wargaBaru): bool
+    public function delete(User $user, Warga $warga): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class WargaBaruPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, WargaBaru $wargaBaru): bool
+    public function restore(User $user, Warga $warga): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class WargaBaruPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, WargaBaru $wargaBaru): bool
+    public function forceDelete(User $user, Warga $warga): bool
     {
         //
     }

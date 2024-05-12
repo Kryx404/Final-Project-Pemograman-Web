@@ -11,14 +11,14 @@
                 @php
                     $jam = date('H');
                     if ($jam < '12') {
-                        echo '<h2>Selamat Pagi: ' . Auth::user()->nama . ' </h2>';
-                    } elseif ($jam < '18') {
                         echo '<h2>Selamat Siang: ' . Auth::user()->nama . ' </h2>';
-                    } else {
+                    } elseif ($jam < '18') {
                         echo '<h2>Selamat Malam: ' . Auth::user()->nama . ' </h2>';
+                    } else {
+                        echo '<h2>Selamat Pagi: ' . Auth::user()->nama . ' </h2>';
                     }
                 @endphp
-                <p class="pb-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, repudiandae autem velit
+                <p class="pb-2 mt-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, repudiandae autem velit
                     et
                     odio numquam? Eveniet similique sequi expedita iusto, quasi mollitia dolor exercitationem quia culpa
                     doloribus debitis nesciunt, qui molestias. Non debitis libero dignissimos quod minus nihil doloribus?
