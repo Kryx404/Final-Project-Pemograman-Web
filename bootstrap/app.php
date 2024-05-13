@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use App\Http\Middleware\UserAkses;
+use App\Http\Middleware\AdminAkses;
 
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -13,7 +13,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function ($middleware) {
-        //
+
+        $middleware->alias([
+            'adminakses' => \App\Http\Middleware\AdminAkses::class,
+            'pengelolaakses' => \App\Http\Middleware\PengelolaAkses::class,
+        ]);
+        // $middleware->add(UserAkses::class);
+        // $middleware->web(append: [UserAkses::class]);
+
+
     })
 
      ->withExceptions(function (Exceptions $exceptions) {

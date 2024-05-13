@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 // start admin
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'adminakses'])->group(function () {
 
     Route::get('/admin', [AdminDashboardController::class, 'index']);
     // crud
@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 // start pengelola
-Route::get('/pengelola', [PengelolaDashboardController::class, 'pengelola']);
+Route::get('/pengelola', [PengelolaDashboardController::class, 'pengelola'])->middleware('auth', 'pengelolaakses');
 // end pengelola
+
 

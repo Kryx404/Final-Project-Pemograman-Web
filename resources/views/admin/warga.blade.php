@@ -32,21 +32,22 @@
                 </thead>
                 <tbody>
                     @foreach ($warga as $data)
-                    <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $data->nama }}</td>
-                        <td>{{ $data->username }}</td>
-                        <td>{{ $data->alamat }}</td>
-                        <td>
-                            <a href='/admin/ubah-data/{{ $data->id }}' class="btn btn-primary">Ubah</a>
-                            <form action="{{ route('admin.data-baru.destroy', $data->id) }}" method="POST" style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $data->nama }}</td>
+                            <td>{{ $data->username }}</td>
+                            <td>{{ $data->alamat }}</td>
+                            <td>
+                                <a href='/admin/ubah-data/{{ $data->id }}' class="btn btn-primary">Ubah</a>
+                                <form action="{{ route('admin.data-baru.destroy', $data->id) }}" method="POST"
+                                    style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -58,3 +59,5 @@
     {{-- menampilkan footer --}}
     @include('admin.partials.footer-admin')
 @endsection
+
+

@@ -6,25 +6,21 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Middleware\Authenticate;
 
 
-class UserAkses
+class PengelolaAkses
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-
-     public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
-        $userRole = $request->session()->get('role');
-
-        if ($userRole === 'admin' || $userRole === 'user') {
+        if(Auth::user()->role == 'pengelola'){
             return $next($request);
-        }
+    }
 
-        return response()->json(['message' => 'Anda tidak diperbolehkan mengakses halaman ini.'], 403);
+    abort(403, 'anda tidak memiliki akses');
     }
 }
