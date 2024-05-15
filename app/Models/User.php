@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Pembayaran;
 
 class User extends Authenticatable
 {
@@ -47,4 +48,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    protected $guarded = ['id'];
+
+
+    // untuk menghubungkan ke database pembayaran
+    public function Pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class);
+}
+
+
 }

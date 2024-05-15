@@ -31,6 +31,9 @@ class LoginController extends Controller
             } elseif ($user->role == 'user') {
                 return redirect('/user')->with('role', 'user');
             }
+            else{
+                return redirect('/pengelola')->with('role', 'pengelola');
+            }
         }
          // if (Auth::attempt($credentials)) {
         //     $request->session()->regenerate();

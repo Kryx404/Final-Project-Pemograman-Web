@@ -26,6 +26,10 @@ nav .container-fluid .navbar-brand {
     border-radius: 5px;
 }
 
+.nav-link.active {
+    color: var(--bg) !important; /* Change this to the desired color */
+}
+
 .section {
     background-image: linear-gradient(
             to top,

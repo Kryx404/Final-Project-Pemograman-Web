@@ -28,17 +28,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($pembayaran as $data)
                     <tr>
-                        <td>1,001</td>
-                        <td>random</td>
-                        <td>1,001</td>
-                        <td>random</td>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $data->nama }}</td>
+                        <td>{{ $data->nominal }}</td>
+                        <td>{{ $data->status }}</td>
                     </tr>
-                    <td>1,001</td>
-                    <td>random</td>
-                    <td>1,001</td>
-                    <td>random</td>
-                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

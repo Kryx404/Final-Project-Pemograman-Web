@@ -26,6 +26,10 @@ nav .container-fluid .navbar-brand {
     border-radius: 5px;
 }
 
+.nav-link.active {
+    color: var(--bg) !important; /* Change this to the desired color */
+}
+
 .section {
     max-width: 1140px;
     margin: 0 auto;

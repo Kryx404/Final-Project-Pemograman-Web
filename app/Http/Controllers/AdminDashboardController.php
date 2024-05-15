@@ -14,18 +14,30 @@ class AdminDashboardController extends Controller
 {
     public function index()
     {
-        $warga = User::all();
+        // dd(request('search'));
+
+        $warga = User::latest();
+        if(request('search')){
+            $warga->where('nama', 'like', '%'. request('search'). '%')
+            ->orWhere('username', 'like', '%'. request('search'). '%')
+            ->orWhere('alamat', 'like', '%'. request('search'). '%');
+        }
+
+        $warga = $warga->get();
         return view('admin.warga',[
             "title" => "admin"
         ], compact('warga'));
     }
-    public function tagihan()
-    {
-        return view('admin.tagihan',[
-            "title" => "tagihan"
-        ]
-        );
-    }
+
+
+    // public function tagihan()
+    // {
+    //     return view('admin.tagihan',[
+    //         "title" => "tagihan"
+    //     ]
+    //     );
+    // }
+
 
     public function edit($id)
     {
@@ -36,6 +48,7 @@ class AdminDashboardController extends Controller
         ]);
 
     }
+
 
     public function update(Request $request, $id)
     {
@@ -83,15 +96,17 @@ class AdminDashboardController extends Controller
 
         // Redirect ke halaman yang diinginkan setelah data berhasil disimpan
         Session::flash('success', 'Data baru berhasil ditambahkan.');
-
-    return redirect('/admin');
+        return redirect('/admin');
+// return redirect()->back();
 }
 
 public function destroy($id)
 {
     DB::table('users')->where('id', $id)->delete();
 
-    return redirect('/admin')->with('success', 'Data berhasil dihapus.');
+return redirect()->back()->with ('success', 'Data berhasil dihapus.');
+    // return redirect('/admin')->with('success', 'Data berhasil dihapus.');
 }
+
 
 }

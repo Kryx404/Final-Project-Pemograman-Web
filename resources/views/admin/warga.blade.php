@@ -12,13 +12,24 @@
         <div class="data-warga">
             <h3 class="text-start mb-4 mt-5">Data Warga</h3>
             <a href="{{ route('admin.data-baru.store') }}" class="btn btn-primary">Tambah data baru</a>
-            <div class="input-group mb-3 w-50 mt-4">
-                <span class="input-group-text" id="basic-addon1">Cari warga</span>
-                <input type="text" class="form-control" placeholder="Masukan kata kunci" aria-label="Nama Bulan"
-                    aria-describedby="basic-addon1">
-                <button class="btn btn-primary" type="button">Cari</button>
-            </div>
+
+            <form action="{{ route('admin.index') }}" method="GET">
+                <div class="input-group mb-3 w-50 mt-4">
+                    <span class="input-group-text">Cari warga</span>
+                    <input type="text" class="form-control" placeholder="Masukan kata kunci" name="search"
+                        value="{{ request('search') }}">
+                    <button class="btn btn-primary" type="submit">Cari</button>
+                </div>
+            </form>
+            
         </div>
+
+        @if (Session::has('success'))
+            <div class="alert alert-success">
+                {{ Session::get('success') }}
+            </div>
+        @endif
+
         <div class="table-warga">
             <table class="table">
                 <thead>
@@ -37,6 +48,7 @@
                             <td>{{ $data->nama }}</td>
                             <td>{{ $data->username }}</td>
                             <td>{{ $data->alamat }}</td>
+
                             <td>
                                 <a href='/admin/ubah-data/{{ $data->id }}' class="btn btn-primary">Ubah</a>
                                 <form action="{{ route('admin.data-baru.destroy', $data->id) }}" method="POST"
@@ -55,9 +67,24 @@
     </main>
 
 
+    <script>
+        // Mendapatkan referensi ke elemen alert
+        var alertElement = document.getElementById('success-alert');
+
+        // Mengatur waktu mundur (dalam milidetik)
+        var countdown = 5000; // 5000 milidetik = 5 detik
+
+        // Menghilangkan elemen alert setelah waktu tertentu
+        setTimeout(function() {
+            alertElement.style.opacity = '0';
+            alertElement.style.pointerEvents = 'none';
+
+            setTimeout(function() {
+                alertElement.style.display = 'none';
+            }, 500); // Menunggu 0.5 detik setelah mengatur opacity menjadi 0
+        }, countdown);
+    </script>
 
     {{-- menampilkan footer --}}
     @include('admin.partials.footer-admin')
 @endsection
-
-

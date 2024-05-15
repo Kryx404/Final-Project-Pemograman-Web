@@ -13,7 +13,12 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="button nav-link {{ $title === 'login' ? 'active' : '' }}" href="/login">Logout</a>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button class="bg-transparent border-0">
+                        <a class="nav-link button"><i class="bi bi-box-arrow-right me-2"></i>Keluar</a>
+                    </button>
+                    </form>
                 </li>
             </ul>
         </div>

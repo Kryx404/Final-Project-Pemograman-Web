@@ -8,12 +8,6 @@
 
     <section>
 
-@if (session('loginError'))
-    <div class="alert alert-danger">
-        {{ session('loginError') }}
-    </div>
-@endif
-
         <form action="/login" method="post">
             @csrf
             <div class="section row justify-content-center">
@@ -37,10 +31,11 @@
                             @enderror
                         </div>
                         <div class="form-floating">
-                            <input type="password" name="password" class="form-control @error('password')
+                            <input type="password" name="password"
+                                class="form-control @error('password')
                                 is-invalid
-                            @enderror" id="password"
-                                placeholder="Password">
+                            @enderror"
+                                id="password" placeholder="Password">
                             <label for="password">Password</label>
                             @error('password')
                                 <div class="invalid-feedback">
@@ -48,6 +43,13 @@
                                 </div>
                             @enderror
                         </div>
+
+                        @if (session('loginError'))
+                        <div class="alert alert-danger">
+                            {{ session('loginError') }}
+                        </div>
+                    @endif
+
 
                         <div class="checkbox mb-3">
                             <label>
