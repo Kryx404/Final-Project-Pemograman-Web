@@ -13,10 +13,10 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item pe-3">
-                    <a class="nav-link {{ $title === 'tagihan' ? 'active' : '' }}" href="/admin/tagihan">Tagihan</a>
+                    <a class="nav-link {{ $title === 'admin' ? 'active' : '' }}" href="/admin">Data Warga</a>
                 </li>
                 <li class="nav-item pe-3">
-                    <a class="nav-link {{ $title === 'admin' ? 'active' : '' }}" href="/admin">Data Warga</a>
+                    <a class="nav-link {{ $title === 'tagihan' ? 'active' : '' }}" href="/admin/tagihan">Tagihan</a>
                 </li>
                 <li class="nav-item">
                     <form action="/logout" method="post">

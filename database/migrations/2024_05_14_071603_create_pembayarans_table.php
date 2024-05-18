@@ -11,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-
-        
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('nama');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('nominal');
             $table->enum('status', ['sudah terbayar', 'belum terbayar'])->default('belum terbayar');
+            $table->timestamps();
         });
-
-
     }
 
     /**

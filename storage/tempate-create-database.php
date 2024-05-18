@@ -34,12 +34,3 @@ pembayaran::create([
     'status' => 'lunas'
 ]);
 
-
-user::create([
-    'nama' => 'yudi',
-    'username' => 'yudi ganteng',
-    'password' => Hash::make('12345678'),
-    'alamat' => 'yudi ganteng',
-    'role' => 'admin',
-'email' => 'yudi@gmail.com',
-])

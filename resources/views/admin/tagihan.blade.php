@@ -31,7 +31,7 @@
                     @foreach ($pembayaran as $data)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $data->nama }}</td>
+                        <td>{{ $data->User->nama }}</td>
                         <td>{{ $data->nominal }}</td>
                         <td>{{ $data->status }}</td>
                     </tr>
