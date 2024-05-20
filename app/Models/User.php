@@ -55,7 +55,7 @@ class User extends Authenticatable
     // untuk menghubungkan ke database pembayaran
     public function Pembayaran()
     {
-        return $this->hasMany(Pembayaran::class);
+        return $this->hasMany(Tagihan::class);
 }
 
 

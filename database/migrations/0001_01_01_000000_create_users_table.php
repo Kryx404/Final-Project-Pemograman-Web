@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            // $table->foreignId('pembayaran_id')->primary();
             $table->string('nama');
             $table->string('alamat');
             $table->string('username')->unique();

@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Pembayaran;
 
-class PembayaranSeeder extends Seeder
+class TagihanSeeder extends Seeder
 {
     /**
      * Run the database seeds.

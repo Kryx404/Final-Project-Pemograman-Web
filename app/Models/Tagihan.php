@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Pembayaran;
+use App\Models\Tagihan;
 
 
-class Pembayaran extends Model
+class Tagihan extends Model
 {
     use HasFactory;
 

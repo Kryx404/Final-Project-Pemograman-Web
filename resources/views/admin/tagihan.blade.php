@@ -23,19 +23,19 @@
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Nama Warga</th>
-                        <th scope="col">Nominal</th>
+                        <th scope="col">Bulan</th>
                         <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pembayaran as $data)
-                    <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $data->User->nama }}</td>
-                        <td>{{ $data->nominal }}</td>
-                        <td>{{ $data->status }}</td>
-                    </tr>
-                @endforeach
+                    @foreach ($tagihan as $data)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $data->User->nama }}</td>
+                            <td>{{ $data->bulan }}</td>
+                            <td>{{ $data->status }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

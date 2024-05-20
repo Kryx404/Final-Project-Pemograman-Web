@@ -6,7 +6,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\PengelolaDashboardController;
-use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\TagihanController;
 use App\Http\Controllers\WargaController;
 
 
@@ -39,7 +39,7 @@ Route::middleware(['auth', 'adminakses'])->group(function () {
 
     // Route::resource('/admin/tagihan', PembayaranController::class);
     // Route::get('/admin/tagihan', [AdminDashboardController::class, 'tagihan'])->name('admin.tagihan');
-    Route::get('/admin/tagihan', [PembayaranController::class, 'index'])->name('admin.tagihan');
+    Route::get('/admin/tagihan', [TagihanController::class, 'index'])->name('admin.tagihan');
     Route::get('/admin/data-warga', [AdminDashboardController::class, 'datawarga']);
 
     Route::get('/admin/ubah-data/{id}', [AdminDashboardController::class, 'edit'])->name('admin.edit-data');

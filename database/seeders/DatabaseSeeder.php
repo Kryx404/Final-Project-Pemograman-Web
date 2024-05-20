@@ -51,6 +51,26 @@ class DatabaseSeeder extends Seeder
         'email' => 'pengelola@gmail.com',
         ]);
 
+        user::create([
+            'nama' => 'hawa',
+            'username' => 'hawa123',
+            'password' => Hash::make('12345678'),
+            'alamat' => 'rumah hawa',
+            'role' => 'user',
+        'email' => 'hawa@gmail.com',
+        // 'user_id' => '1'
+        ]);
+
+        user::create([
+            'nama' => 'iza',
+            'username' => 'iza123',
+            'password' => Hash::make('12345678'),
+            'alamat' => 'rumah iza',
+            'role' => 'user',
+        'email' => 'iza@gmail.com',
+        // 'user_id' => '2'
+        ]);
+
         // pembayaran::create([
         //     'user_id' => '1',
         //     'nominal' => '1000',

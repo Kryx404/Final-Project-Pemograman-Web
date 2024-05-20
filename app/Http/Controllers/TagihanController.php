@@ -7,10 +7,10 @@ use App\Http\Requests\StorePembayaranRequest;
 use App\Http\Requests\UpdatePembayaranRequest;
 
 //import model pembayaran
-use App\Models\Pembayaran;
+use App\Models\Tagihan;
 
 
-class PembayaranController extends Controller
+class TagihanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +18,11 @@ class PembayaranController extends Controller
     public function index()
     {
 
-        $pembayaran = Pembayaran::all();
+        $tagihan = Tagihan::all();
+        $datapembayaran = Tagihan::with('user')->get();
         return view('admin.tagihan',[
             "title" => "tagihan"
-        ], compact('pembayaran'));
+        ], compact('tagihan', 'datapembayaran'));
 
 
     }
