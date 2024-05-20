@@ -2,7 +2,13 @@
 
 
 @section('login')
+    {{-- link css --}}
     <link rel="stylesheet" href="css/style-login.css">
+
+    {{-- cdn sweetalert --}}
+    <script src=" https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js "></script>
+    <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css " rel="stylesheet">
+
 
     @include('landing-page.partials.navbar')
 
@@ -44,11 +50,22 @@
                             @enderror
                         </div>
 
-                        @if (session('loginError'))
-                        <div class="alert alert-danger">
-                            {{ session('loginError') }}
-                        </div>
-                    @endif
+                        {{-- @if (session('loginError'))
+                            <div class="alert alert-danger">
+                                {{ session('loginError') }}
+                            </div>
+                        @endif --}}
+
+                        {{-- sweet alert --}}
+                        @if (Session::has('loginError'))
+                            <script>
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Login Gagal",
+                                    text: "Masukan username dan password dengan benar!",
+                                });
+                            </script>
+                        @endif
 
 
                         <div class="checkbox mb-3">
