@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StorePembayaranRequest;
 use App\Http\Requests\UpdatePembayaranRequest;
 
-//import model pembayaran
+//import model
 use App\Models\Tagihan;
+use App\Models\User;
 
 
 class TagihanController extends Controller
@@ -18,13 +19,16 @@ class TagihanController extends Controller
     public function index()
     {
 
-        $tagihan = Tagihan::all();
-        $datapembayaran = Tagihan::with('user')->get();
-        return view('admin.tagihan',[
-            "title" => "tagihan"
-        ], compact('tagihan', 'datapembayaran'));
+        // $tagihan = Tagihan::all();
+        // $datapembayaran = Tagihan::with('user')->get();
+        // return view('admin.tagihan',[
+        //     "title" => "tagihan"
+        // ], compact('tagihan', 'datapembayaran'));
 
-
+        $users = User::with('tagihan')->get();
+        return view('admin.tagihan', [
+            "title" => "tagihan",
+        ], compact('users'));
     }
 
     /**

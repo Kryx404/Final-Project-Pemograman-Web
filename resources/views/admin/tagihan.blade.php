@@ -25,15 +25,25 @@
                         <th scope="col">Nama Warga</th>
                         <th scope="col">Bulan</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($tagihan as $data)
+                    @foreach ($users as $data)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $data->User->nama }}</td>
-                            <td>{{ $data->bulan }}</td>
-                            <td>{{ $data->status }}</td>
+                            <td>{{ $data->nama }}</td>
+                            <td>{{ $data->tagihan->first()->bulan ?? '-' }}</td>
+                            <td>{{ $data->tagihan->first() ? $data->tagihan->first()->status : '-' }}</td>
+
+                            <td>
+                                <div class="mb-1">
+                                    <a href='' class="btn btn-success "><i class="bi bi-check-lg"></i> Terbayar</a>
+                                </div>
+                                <div class="mt-1">
+                                    <a href='' class="btn btn-warning "><i class="bi bi-bell"></i> Ingatkan</a>
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

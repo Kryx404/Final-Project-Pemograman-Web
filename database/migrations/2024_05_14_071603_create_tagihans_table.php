@@ -13,11 +13,18 @@ return new class extends Migration
     {
         Schema::create('tagihans', function (Blueprint $table) {
             $table->id();
-            // $table->user_id()->primary();
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->foreignId('user_id')->constrained();
+
+            $table->foreignId('laporan_id')->constrained();
+
             $table->enum('bulan', ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']);
+            // $table->string('bulan')->default(now()->format('F')); //buat default mengikuti bulan
+
             $table->enum('status', ['sudah terbayar', 'belum terbayar'])->default('belum terbayar');
+            $table->string('bukti');
             $table->timestamps();
+
         });
     }
 

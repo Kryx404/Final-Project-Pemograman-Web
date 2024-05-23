@@ -18,7 +18,8 @@
                         echo '<h2>Selamat Pagi: ' . Auth::user()->nama . ' </h2>';
                     }
                 @endphp
-                <p class="pb-2 mt-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, repudiandae autem velit
+                <p class="pb-2 mt-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, repudiandae autem
+                    velit
                     et
                     odio numquam? Eveniet similique sequi expedita iusto, quasi mollitia dolor exercitationem quia culpa
                     doloribus debitis nesciunt, qui molestias. Non debitis libero dignissimos quod minus nihil doloribus?
@@ -41,20 +42,20 @@
                 <thead>
                     <tr>
                         <th scope="col">Bulan</th>
-                        <th scope="col">Jumlah</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1,001</td>
-                        <td>random</td>
-                    </tr>
-                    <td>1,001</td>
-                    <td>random</td>
-                    </tr>
+                    @foreach (Auth::user()->tagihan as $tagihan)
+                        <tr>
+                            <td>
+                                {{ $tagihan->bulan ?? 'Tidak ada tagihan' }}
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
-            <button class="btn rounded-5 px-4 py-2 mt-3" onclick="window.location.href='/pembayaran';">Bayar Sekarang</button>
+            <button class="btn rounded-5 px-4 py-2 mt-3" onclick="window.location.href='/pembayaran';">Bayar
+                Sekarang</button>
         </section>
     </main>
 

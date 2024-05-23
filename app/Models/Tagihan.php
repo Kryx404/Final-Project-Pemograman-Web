@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Tagihan;
+use App\Models\User;
 
 
 class Tagihan extends Model
@@ -13,6 +14,7 @@ class Tagihan extends Model
 
     protected $fillable = [
         'user_id',
+        'pembayaran_id',
         'nominal',
         'status',
     ];
@@ -24,6 +26,12 @@ class Tagihan extends Model
     public function User()
     {
         return $this->belongsTo(User::class);
+    }
+
+
+    public function Laporan()
+    {
+        return $this->hasOne(Laporan::class);
     }
 }
 
