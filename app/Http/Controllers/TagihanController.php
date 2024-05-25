@@ -25,7 +25,7 @@ class TagihanController extends Controller
         //     "title" => "tagihan"
         // ], compact('tagihan', 'datapembayaran'));
 
-        $users = User::with('tagihan')->get();
+        $users = User::with('tagihan')->whereNotIn('role', ['admin', 'pengelola'])->get();
         //buat mengurutkan
         $sortedUsers = $users->sortBy(function ($user) {
             return $user->tagihan->first()
@@ -37,6 +37,8 @@ class TagihanController extends Controller
             "title" => "tagihan",
             'users' => $sortedUsers
         ]);
+
+
     }
 
     /**

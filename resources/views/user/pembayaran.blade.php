@@ -6,6 +6,10 @@
     {{-- css --}}
     <link rel="stylesheet" href="{{ asset('css/style-user.css') }}">
 
+    {{-- cdn sweetalert --}}
+    <script src=" https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js "></script>
+    <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css " rel="stylesheet">
+
     <main>
         <div class="container">
             <div class="py-5 text-center">
@@ -55,6 +59,16 @@
                             <hr class="my-4">
 
                             <button class="w-100 btn btn-lg" type="submit">Bayar</button>
+                            {{-- sweet alert --}}
+                            @if (Session::has('success'))
+                                <script>
+                                    Swal.fire({
+                                        title: "Berhasil!",
+                                        text: "Admin akan mengubah status pembayaran anda secepatnya.",
+                                        icon: "success"
+                                    });
+                                </script>
+                            @endif
                     </form>
                 </div>
             </div>

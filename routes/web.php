@@ -47,7 +47,7 @@ Route::middleware(['auth', 'adminakses'])->group(function () {
     Route::post('/admin/ubah-data/{id}', [AdminDashboardController::class, 'update'])->name('admin.edit-data.update');
 
     Route::resource('/admin', AdminDashboardController::class,);
-    Route::post('/admin/data-baru', [AdminDashboardController::class, 'st   ore'])->name('admin.data-baru.store');
+    Route::post('/admin/data-baru', [AdminDashboardController::class, 'store'])->name('admin.data-baru.store');
     Route::delete('/admin/data-baru/{id}', [AdminDashboardController::class, 'destroy'])->name('admin.data-baru.destroy');
 
 })->name('admin');
