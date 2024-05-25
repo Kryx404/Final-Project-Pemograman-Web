@@ -22,8 +22,8 @@
                     <form action="/logout" method="post">
                         @csrf
                         <button class="bg-transparent border-0">
-                        <a class="nav-link button"><i class="bi bi-box-arrow-right me-2"></i>Keluar</a>
-                    </button>
+                            <a class="nav-link button"><i class="bi bi-box-arrow-right me-2"></i>Keluar</a>
+                        </button>
                     </form>
                 </li>
 

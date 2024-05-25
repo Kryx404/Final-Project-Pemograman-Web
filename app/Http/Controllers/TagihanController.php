@@ -26,9 +26,17 @@ class TagihanController extends Controller
         // ], compact('tagihan', 'datapembayaran'));
 
         $users = User::with('tagihan')->get();
+        //buat mengurutkan
+        $sortedUsers = $users->sortBy(function ($user) {
+            return $user->tagihan->first()
+                ? ($user->tagihan->first()->status == 'sudah terbayar' ? 0 : 1)
+                : 1;
+        });
+
         return view('admin.tagihan', [
             "title" => "tagihan",
-        ], compact('users'));
+            'users' => $sortedUsers
+        ]);
     }
 
     /**

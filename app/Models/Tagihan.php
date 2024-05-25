@@ -15,7 +15,6 @@ class Tagihan extends Model
     protected $fillable = [
         'user_id',
         'pembayaran_id',
-        'nominal',
         'status',
     ];
 

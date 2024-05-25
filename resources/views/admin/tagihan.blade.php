@@ -25,7 +25,8 @@
                         <th scope="col">Nama Warga</th>
                         <th scope="col">Bulan</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Aksi</th>
+                        <th scope="col" style="width: 12%;">Aksi</th>
+                        <th scope="col">Bukti</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,8 +34,11 @@
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $data->nama }}</td>
-                            <td>{{ $data->tagihan->first()->bulan ?? '-' }}</td>
-                            <td>{{ $data->tagihan->first() ? $data->tagihan->first()->status : '-' }}</td>
+                            <td>{{ $data->tagihan->first()->bulan ?? now()->format('F') }}</td>
+                            <td
+                                style="{{ $data->tagihan->first() ? ($data->tagihan->first()->status == 'sudah terbayar' ? 'color:green' : 'color:red') : 'color:red' }}">
+                                {{ $data->tagihan->first() ? $data->tagihan->first()->status : 'belum terbayar' }}
+                            </td>
 
                             <td>
                                 <div class="mb-1">
@@ -44,8 +48,50 @@
                                     <a href='' class="btn btn-warning "><i class="bi bi-bell"></i> Ingatkan</a>
                                 </div>
                             </td>
+
+                            <td>
+                                <div class="mb-1">
+                                    <a href='{{ $data->tagihan->first() ? asset('bukti/' . $data->id . '/' . $data->tagihan->first()->bukti) : '#' }}'
+                                        class="btn btn-info "><i class="bi bi-file-earmark-text"></i> Lihat Bukti</a>
+                                </div>
+                            </td>
+
                         </tr>
                     @endforeach
+                    {{-- @php
+                        $sortedUsers = $users->sortBy(function ($user) {
+                            return $user->tagihan->first()
+                                ? ($user->tagihan->first()->status == 'sudah terbayar'
+                                    ? 0
+                                    : 1)
+                                : 1;
+                        });
+                    @endphp
+                    @foreach ($sortedUsers as $data)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $data->nama }}</td>
+                            <td>{{ $data->tagihan->first()->bulan ?? now()->format('F') }}</td>
+                            <td
+                                style="{{ $data->tagihan->first() ? ($data->tagihan->first()->status == 'sudah terbayar' ? 'color:green' : 'color:red') : 'color:red' }}">
+                                {{ $data->tagihan->first() ? $data->tagihan->first()->status : 'belum terbayar' }}
+                            </td>
+                            <td>
+                                <div class="mb-1">
+                                    <a href='' class="btn btn-success "><i class="bi bi-check-lg"></i> Terbayar</a>
+                                </div>
+                                <div class="mt-1">
+                                    <a href='' class="btn btn-warning "><i class="bi bi-bell"></i> Ingatkan</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="mb-1">
+                                    <a href='{{ $data->tagihan->first() ? asset('bukti/' . $data->id . '/' . $data->tagihan->first()->bukti) : '#' }}'
+                                        class="btn btn-info "><i class="bi bi-file-earmark-text"></i> Lihat Bukti</a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach --}}
                 </tbody>
             </table>
         </div>

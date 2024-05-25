@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 //import model
 use App\Models\Tagihan;
@@ -23,6 +25,20 @@ class UserDashboardController extends Controller
         return view('user.pembayaran', [
             "title" => "pembayaran"
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        $tagihan = new Tagihan;
+        $tagihan->bulan = $request->input('bulan');
+        $tagihan->bukti = $request->file('bukti')->store('bukti_pembayaran');
+        $tagihan->user_id = auth()->id();
+        $tagihan->status = 'sudah terbayar';
+        $tagihan->save();
+
+        // Redirect ke halaman yang diinginkan setelah data berhasil disimpan
+        Session::flash('success', 'Data baru berhasil ditambahkan.');
+return redirect()->back();
     }
 
 }

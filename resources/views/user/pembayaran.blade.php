@@ -46,22 +46,15 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="nominal" class="form-label">Nominal</label>
-                                <input type="number" class="form-control" id="nominal" name="nominal" placeholder="Rp." required>
-                                <div class="invalid-feedback">
-                                    Masukan nominal dengan benar.
-                                </div>
-                            </div>
-
-                            <div class="col-12">
                                 <label for="bukti" class="form-label">Upload Bukti Pembayaran<span
                                         class="text-muted">(Wajib
                                         sertakan bukti pembayaran)</span></label>
-                                <input type="file" class="form-control" id="bukti" name="bukti" accept="image/*" required>
+                                <input type="file" class="form-control" id="bukti" name="bukti" accept="image/*"
+                                    required>
                             </div>
                             <hr class="my-4">
 
-                                <button class="w-100 btn btn-lg" type="submit">Bayar</button>
+                            <button class="w-100 btn btn-lg" type="submit">Bayar</button>
                     </form>
                 </div>
             </div>
