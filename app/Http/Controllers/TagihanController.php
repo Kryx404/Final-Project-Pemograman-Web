@@ -26,11 +26,26 @@ class TagihanController extends Controller
         // ], compact('tagihan', 'datapembayaran'));
 
         $users = User::with('tagihan')->whereNotIn('role', ['admin', 'pengelola'])->get();
-        //buat mengurutkan
+
+        // Menambahkan pencarian nama user sebelum pengurutan
+        if ($search = request('search')) {
+            $users = $users->filter(function($user) use ($search) {
+                return str_contains($user->nama, $search);
+            });
+        }
+
+        // menambahkan filter bulan
+        if ($bulan = request('bulan')) {
+            // Ambil data berdasarkan bulan yang dipilih dari kolom bulan pada database tagihan
+            $users = $users->filter(function($user) use ($bulan) {
+                return $user->tagihan->where('bulan', $bulan)->count() > 0;
+            });
+        }
+
+        // Mengurutkan pengguna berdasarkan status pembayaran
         $sortedUsers = $users->sortBy(function ($user) {
-            return $user->tagihan->first()
-                ? ($user->tagihan->first()->status == 'sudah terbayar' ? 0 : 1)
-                : 1;
+            $firstTagihan = $user->tagihan->first();
+            return $firstTagihan ? ($firstTagihan->status == 'sudah terbayar' ? 0 : 1) : 1;
         });
 
         return view('admin.tagihan', [

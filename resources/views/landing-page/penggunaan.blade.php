@@ -6,7 +6,7 @@
     {{-- css --}}
     <link rel="stylesheet" href="css/style-penggunaan.css">
 
-    <section>
+    <section class="mb-5">
         <div>
             <h3 class="mb-3">Cara Penggunaan</h3>
             <ul>
@@ -22,8 +22,6 @@
                     dilihat di riwayat tagihan.</li>
             </ul>
         </div>
-
-
     </section>
     {{-- menampilkan footer --}}
     @include('landing-page.partials.footer')

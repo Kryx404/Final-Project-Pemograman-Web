@@ -10,12 +10,53 @@
     <main>
         <div class="bulan">
             <h3 class="text-start mb-4 mt-5">Status tagihan warga</h3>
-            <div class="input-group mb-3">
+
+
+            {{-- <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Masukan nama bulan:</span>
                 <input type="text" class="form-control" placeholder="Nama Bulan" aria-label="Nama Bulan"
                     aria-describedby="basic-addon1">
                 <button class="btn btn-primary" type="button">Cari</button>
+            </div> --}}
+
+            <div class="d-flex align-items-center justify-content-between my-5">
+                {{-- search --}}
+                <form action="{{ route('admin.tagihan') }}" method="GET" class="w-50 me-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Masukan kata kunci" name="search"
+                            value="{{ request('search') }}">
+                        <button class="btn btn-primary" type="submit">Cari</button>
+                    </div>
+                </form>
+
+                {{-- filter --}}
+                <form action="{{ route('admin.tagihan') }}" method="GET" class="w-50 ms-2">
+                    <div class="input-group d-flex">
+                        <label class="input-group-text" for="bulanFilter">Filter Bulan:</label>
+                        <select class="form-select" id="bulanFilter" name="bulan">
+                            <option value="">Pilih Bulan...</option>
+                            <option value="Januari" {{ request('bulan') == 'Januari' ? 'selected' : '' }}>Januari</option>
+                            <option value="Februari" {{ request('bulan') == 'Februari' ? 'selected' : '' }}>Februari
+                            </option>
+                            <option value="Maret" {{ request('bulan') == 'Maret' ? 'selected' : '' }}>Maret</option>
+                            <option value="April" {{ request('bulan') == 'April' ? 'selected' : '' }}>April</option>
+                            <option value="Mei" {{ request('bulan') == 'Mei' ? 'selected' : '' }}>Mei</option>
+                            <option value="Juni" {{ request('bulan') == 'Juni' ? 'selected' : '' }}>Juni</option>
+                            <option value="Juli" {{ request('bulan') == 'Juli' ? 'selected' : '' }}>Juli</option>
+                            <option value="Agustus" {{ request('bulan') == 'Agustus' ? 'selected' : '' }}>Agustus</option>
+                            <option value="September" {{ request('bulan') == 'September' ? 'selected' : '' }}>September
+                            </option>
+                            <option value="Oktober" {{ request('bulan') == 'Oktober' ? 'selected' : '' }}>Oktober</option>
+                            <option value="November" {{ request('bulan') == 'November' ? 'selected' : '' }}>November
+                            </option>
+                            <option value="Desember" {{ request('bulan') == 'Desember' ? 'selected' : '' }}>Desember
+                            </option>
+                        </select>
+                        <button class="btn btn-primary" type="submit">Filter</button>
+                    </div>
+                </form>
             </div>
+
         </div>
         <div class="table-tagihan">
             <table class="table">
