@@ -66,6 +66,7 @@
                         <th scope="col">Nama Warga</th>
                         <th scope="col">Bulan</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Catatan</th>
                         <th scope="col" style="width: 12%;">Aksi</th>
                         <th scope="col">Bukti</th>
                     </tr>
@@ -81,8 +82,10 @@
                                 {{ $data->tagihan->first() ? $data->tagihan->first()->status : 'belum terbayar' }}
                             </td>
 
-                            <td>
+                            <td>{{ $data->tagihan->first()->catatan ?? '-' }}</td>
 
+                            <td>
+                                {{-- button untuk mengganti status tagihan --}}
                                 <div class="mb-1">
                                     {{-- <a href='' class="btn btn-success "><i class="bi bi-check-lg"></i> Terbayar</a> --}}
                                     <a href="{{ route('tagihan.update', $data->id) }}" class="btn btn-success"
@@ -98,12 +101,14 @@
                                 </div>
 
 
+                                {{-- button untuk mengingatkan warga --}}
                                 <div class="mt-1">
                                     <a href='' class="btn btn-warning "><i class="bi bi-bell"></i> Ingatkan</a>
                                 </div>
                             </td>
 
                             <td>
+                                {{-- button untuk melihat bukti --}}
                                 <div class="mb-1">
                                     <a href="{{ $data->tagihan->first() ? asset('storage/' . $data->tagihan->first()->bukti) : '#' }}"
                                         class="btn btn-info "><i class="bi bi-file-earmark-text"></i> Lihat Bukti

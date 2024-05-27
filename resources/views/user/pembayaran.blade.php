@@ -27,6 +27,7 @@
                     <form method="POST" action="{{ route('pembayaran.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row g-3">
+                            <!-- Pilihan bulan -->
                             <div class="col-sm-12">
                                 <label for="bulan" class="form-label">Pilihan Bulan</label>
                                 <select class="form-select" id="bulan" name="bulan" required>
@@ -49,15 +50,17 @@
                                 </div>
                             </div>
 
+                            <!-- Nominal Pembayaran -->
                             <div class="col-sm-12">
                                 <label for="nominal" class="form-label">Nominal Pembayaran</label>
                                 <input type="text" class="form-control" id="nominal" name="nominal" required
-                                    onkeyup="formatRupiah(this, 'Rp. ')" placeholder="Masukkan nominal pembayaran">
+                                    onkeyup="formatRupiah(this, 'Rp. ')" placeholder="Masukan nominal pembayaran">
                                 <div class="invalid-feedback">
-                                    Masukkan nominal pembayaran.
+                                    Masukan nominal pembayaran.
                                 </div>
                             </div>
 
+                            <!-- Upload Bukti Pembayaran -->
                             <div class="col-12">
                                 <label for="bukti" class="form-label">Upload Bukti Pembayaran<span
                                         class="text-muted">(Wajib
@@ -65,8 +68,21 @@
                                 <input type="file" class="form-control" id="bukti" name="bukti" accept="image/*"
                                     required>
                             </div>
+
+                            <!-- Catatan Pembayaran -->
+                            <div class="col-sm-12">
+                                <label for="catatan" class="form-label">Catatan Pembayaran</label>
+                                <input type="text" class="form-control" id="catatan" name="catatan"
+                                    placeholder="Masukan catatan pembayaran">
+                                <div class="invalid-feedback">
+                                    Masukan catatan pembayaran.
+                                </div>
+                            </div>
+
+
                             <hr class="my-4">
 
+                            <!-- Tombol Bayar -->
                             <button class="w-100 btn btn-lg" type="submit">Bayar</button>
                             {{-- sweet alert --}}
                             @if (Session::has('success'))
