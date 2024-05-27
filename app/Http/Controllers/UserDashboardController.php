@@ -31,6 +31,7 @@ class UserDashboardController extends Controller
     {
         $tagihan = new Tagihan;
         $tagihan->bulan = $request->input('bulan');
+        $tagihan->nominal = $request->input('nominal');
         $tagihan->bukti = $request->file('bukti')->store('bukti_pembayaran');
         $tagihan->user_id = auth()->id();
         $tagihan->status = 'sudah terbayar';

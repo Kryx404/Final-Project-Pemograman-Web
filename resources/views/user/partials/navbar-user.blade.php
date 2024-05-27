@@ -13,10 +13,10 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item pe-3">
-                    <a class="nav-link {{ $title === 'home' ? 'active' : '' }}" href="/user">Home</a>
+                    <a class="nav-link {{ $title === 'homepage' ? 'active' : '' }}" href="/user">Home</a>
                 </li>
                 <li class="nav-item pe-3">
-                    <a class="nav-link {{ $title === 'login' ? 'active' : '' }}" href="/pembayaran">Pembayaran</a>
+                    <a class="nav-link {{ $title === 'pembayaran' ? 'active' : '' }}" href="/pembayaran">Pembayaran</a>
                 </li>
                 <li class="nav-item">
                     <form action="/logout" method="post">

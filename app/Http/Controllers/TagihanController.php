@@ -91,10 +91,16 @@ class TagihanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePembayaranRequest $request, Pembayaran $pembayaran)
+    public function update(Request $request, $id)
     {
-        //
-    }
+
+        $tagihan = Tagihan::findorfail($id);
+        $tagihan->update($request->all());
+
+        Session::flash('success', 'Data baru berhasil diedit.');
+        return redirect('/admin/tagihan');
+
+}
 
     /**
      * Remove the specified resource from storage.

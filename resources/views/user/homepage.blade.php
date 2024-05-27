@@ -36,22 +36,25 @@
         {{-- tagihan --}}
         <section class="section justify-content-center align-items-center">
             <div class="section-container pb-3 d-flex flex-column align-items-start text-start mt-5">
-                <h2>Tagihan</h2>
+                <h2> Riwayat Pembayaran</h2>
             </div>
             <table class="table table-striped table-sm " style="back">
                 <thead>
                     <tr>
                         <th scope="col">Bulan</th>
+                        <th scope="col">Nominal</th>
+                        <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (Auth::user()->tagihan as $tagihan)
                         <tr>
-                            <td>
-                                {{ $tagihan->bulan ?? 'Tidak ada tagihan' }}
-                            </td>
+                            <td>{{ $tagihan->bulan ?? 'Tidak ada tagihan' }}</td>
+                            <td>{{ $tagihan->nominal ?? 'Tidak ada nominal' }}</td>
+                            <td>{{ $tagihan->status }}</td>
                         </tr>
                     @endforeach
+
                 </tbody>
             </table>
             <button class="btn rounded-5 px-4 py-2 mt-3" onclick="window.location.href='/pembayaran';">Bayar

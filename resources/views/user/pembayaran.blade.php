@@ -49,6 +49,15 @@
                                 </div>
                             </div>
 
+                            <div class="col-sm-12">
+                                <label for="nominal" class="form-label">Nominal Pembayaran</label>
+                                <input type="text" class="form-control" id="nominal" name="nominal" required
+                                    onkeyup="formatRupiah(this, 'Rp. ')" placeholder="Masukkan nominal pembayaran">
+                                <div class="invalid-feedback">
+                                    Masukkan nominal pembayaran.
+                                </div>
+                            </div>
+
                             <div class="col-12">
                                 <label for="bukti" class="form-label">Upload Bukti Pembayaran<span
                                         class="text-muted">(Wajib
@@ -75,7 +84,23 @@
         </div>
     </main>
 
+    <script>
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.value.replace(/[^,\d]/g, '').toString(),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            angka.value = prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
+    </script>
 
 
     {{-- menampilkan footer --}}
