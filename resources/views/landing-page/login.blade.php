@@ -36,7 +36,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="form-floating">
+                        <div class="form-floating mt-1">
                             <input type="password" name="password"
                                 class="form-control @error('password')
                                 is-invalid
