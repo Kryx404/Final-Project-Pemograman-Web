@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('laporans', function (Blueprint $table) {
             $table->id()->primary();
+            // $table->foreignId('tagihan_id')->constrained();
+            // $table->enum('bulan', ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']);
+            $table->timestamps();
+            $table->foreignId('tagihan_id')->constrained();
+
             // $table->unsignedBigInteger('tagihan_id');
             // $table->foreign('tagihan_id')->references('id')->on('tagihans')->onUpdate('cascade')->onDelete('cascade');
-
-            // $table->foreignId('tagihan_id')->constrained();
-
-
-            $table->datetime('tanggal');
-            $table->timestamps();
+            // $table->datetime('tanggal');
         });
     }
 

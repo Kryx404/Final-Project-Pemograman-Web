@@ -5,7 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use App\Models\Pembayaran;
+use App\Models\Laporan;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -75,6 +75,18 @@ class DatabaseSeeder extends Seeder
         //     'user_id' => '1',
         //     'nominal' => '1000',
         //     'status' => 'belum terbayar'
+        // ]);
+        // Laporan::create([
+        //     'laporan_id' => '1',
+        //     'bulan' => 'januari',
+        // ]);
+        // Laporan::create([
+        //     'laporan_id' => '2',
+        //     'bulan' => 'Februari',
+        // ]);
+        // Laporan::create([
+        //     'laporan_id' => '3',
+        //     'bulan' => 'Maret',
         // ]);
 
     }

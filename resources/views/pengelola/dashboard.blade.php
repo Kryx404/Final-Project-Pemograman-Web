@@ -11,7 +11,7 @@
                 {{-- <h3 class="text-start mb-4 mt-5">Pencarian Berdasarkan Tahun dan Bulan</h3> --}}
                 <div class="row">
                     <div class="col-md-4">
-                        <select class="form-select" aria-label="Pilih Tahun">
+                        <select class="form-select" aria-label="Pilih Tahun" id="tahun">
                             <option selected>Pilih Tahun</option>
                             <option value="2022">2022</option>
                             <option value="2023">2023</option>
@@ -19,7 +19,7 @@
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <select class="form-select" aria-label="Pilih Bulan">
+                        {{-- <select class="form-select" aria-label="Pilih Bulan">
                             <option selected>Pilih Bulan</option>
                             <option value="Januari">Januari</option>
                             <option value="Februari">Februari</option>
@@ -33,17 +33,41 @@
                             <option value="Oktober">Oktober</option>
                             <option value="November">November</option>
                             <option value="Desember">Desember</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <button type="button" class="btn btn-primary">Cari</button>
-                    </div>
+                        </select> --}}
+                        <form action="{{ route('pengelola') }}" method="GET" class="w-100 ms-2">
+                                <select class="form-select" id="bulanFilter" name="bulan">
+                                    <option value="">Pilih Bulan...</option>
+                                    <option value="Januari" {{ request('bulan') == 'Januari' ? 'selected' : '' }}>Januari</option>
+                                    <option value="Februari" {{ request('bulan') == 'Februari' ? 'selected' : '' }}>Februari
+                                    </option>
+                                    <option value="Maret" {{ request('bulan') == 'Maret' ? 'selected' : '' }}>Maret</option>
+                                    <option value="April" {{ request('bulan') == 'April' ? 'selected' : '' }}>April</option>
+                                    <option value="Mei" {{ request('bulan') == 'Mei' ? 'selected' : '' }}>Mei</option>
+                                    <option value="Juni" {{ request('bulan') == 'Juni' ? 'selected' : '' }}>Juni</option>
+                                    <option value="Juli" {{ request('bulan') == 'Juli' ? 'selected' : '' }}>Juli</option>
+                                    <option value="Agustus" {{ request('bulan') == 'Agustus' ? 'selected' : '' }}>Agustus</option>
+                                    <option value="September" {{ request('bulan') == 'September' ? 'selected' : '' }}>September
+                                    </option>
+                                    <option value="Oktober" {{ request('bulan') == 'Oktober' ? 'selected' : '' }}>Oktober</option>
+                                    <option value="November" {{ request('bulan') == 'November' ? 'selected' : '' }}>November
+                                    </option>
+                                    <option value="Desember" {{ request('bulan') == 'Desember' ? 'selected' : '' }}>Desember
+                                    </option>
+                                </select>
+                                 <div class="col-md-2">
+                            <button type="button" class="btn btn-primary">Cari</button>
+                        </div>
+                            </form>
+                        </div>
+                        {{-- <div class="col-md-2">
+                            <button type="button" class="btn btn-primary">Cari</button>
+                        </div> --}}
                 </div>
             </div>
 
             <div class="tabel">
                 <table class="table">
-                    <h4>2022</h4>
+                    <h4 id="tahunTabel"></h4>
                     <thead>
                         <tr>
                             <th scope="col">No</th>
@@ -53,17 +77,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($laporan as $data)
                         <tr>
-                            <td>1,001</td>
-                            <td>random</td>
-                            <td>1,001</td>
-                            <td>random</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $data->tagihan->bulan }}</td>
+                            <td>
+                                {{ $data->tagihan->nominal }}
+                            </td>
+                            <td>
+                                <a href="{{ asset('storage/' . $data->bukti) }}" target="_blank" class="btn btn-info"><i class="bi bi-file-earmark-text"></i> Lihat Bukti</a>
+                            </td>
                         </tr>
-                        <td>1,001</td>
-                        <td>random</td>
-                        <td>1,001</td>
-                        <td>random</td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -75,3 +100,4 @@
 
     @include('pengelola.partials.footer-pengelola')
 @endsection
+
