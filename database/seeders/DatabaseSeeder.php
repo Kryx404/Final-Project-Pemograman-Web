@@ -77,16 +77,48 @@ class DatabaseSeeder extends Seeder
         //     'status' => 'belum terbayar'
         // ]);
         // Laporan::create([
-        //     'laporan_id' => '1',
+        //     'id' => '1',
         //     'bulan' => 'januari',
         // ]);
         // Laporan::create([
-        //     'laporan_id' => '2',
+        //     'id' => '2',
         //     'bulan' => 'Februari',
         // ]);
         // Laporan::create([
-        //     'laporan_id' => '3',
+        //     'id' => '3',
         //     'bulan' => 'Maret',
+        // ]);
+        // Laporan::create([
+        //     'id' => '4',
+        //     'bulan' => 'april',
+        // ]);
+        // Laporan::create([
+        //     'id' => '5',
+        //     'bulan' => 'mei',
+        // ]);
+        // Laporan::create([
+        //     'id' => '6',
+        //     'bulan' => 'juni',
+        // ]);
+        // Laporan::create([
+        //     'id' => '7',
+        //     'bulan' => 'juli',
+        // ]);
+        // Laporan::create([
+        //     'id' => '9',
+        //     'bulan' => 'agustus',
+        // ]);
+        // Laporan::create([
+        //     'id' => '10',
+        //     'bulan' => 'oktober',
+        // ]);
+        // Laporan::create([
+        //     'id' => '11',
+        //     'bulan' => 'november',
+        // ]);
+        // Laporan::create([
+        //     'id' => '12',
+        //     'bulan' => 'desember',
         // ]);
 
     }

@@ -36,15 +36,14 @@ class UserDashboardController extends Controller
         $tagihan->catatan = $request->input('catatan');
         $tagihan->bukti = $request->file('bukti')->store('bukti_pembayaran');
         $tagihan->user_id = auth()->id();
-           // Mengisi foreign key 'tagihan_id' secara otomatis
-    // $tagihan->laporan()->associate($request->input('laporan_id'));
-    // $tagihan->laporan_id = $request->input('laporan_id');
         $tagihan->status = 'sudah terbayar';
         $tagihan->save();
 
         // Redirect ke halaman yang diinginkan setelah data berhasil disimpan
         Session::flash('success', 'Data baru berhasil ditambahkan.');
-return redirect()->back();
+        return redirect()->back();
     }
+
+
 
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Laporan;
 
 /**
  * Class Tagihan
@@ -37,17 +38,18 @@ class Tagihan extends Model
      *
      * @var array
      */
-    // protected static function boot()
-    // {
-    //     parent::boot();
 
-    //     // Set default value laporan_id if laporan_id is not set
-    //     static::creating(function ($tagihan) {
-    //         if ($tagihan->laporan_id === null) {
-    //             $tagihan->laporan_id = $tagihan->laporan ? $tagihan->laporan->id : null;
-    //         }
-    //     });
-    // }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($tagihan) {
+            $laporan = Laporan::create([
+                'tagihan_id' => $tagihan->id,
+                'bulan' => $tagihan->bulan,
+            ]);
+        });
+    }
 
     /**
      * Get the user that owns the Tagihan
@@ -69,5 +71,4 @@ class Tagihan extends Model
         return $this->hasOne(Laporan::class);
     }
 }
-// $namaPengguna = $pembayaran->user->nama;
 

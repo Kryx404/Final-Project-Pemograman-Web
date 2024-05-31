@@ -54,9 +54,9 @@
                                     <option value="Desember" {{ request('bulan') == 'Desember' ? 'selected' : '' }}>Desember
                                     </option>
                                 </select>
-                                 <div class="col-md-2">
+                                 {{-- <div class="col-md-2"> --}}
                             <button type="button" class="btn btn-primary">Cari</button>
-                        </div>
+                        {{-- </div> --}}
                             </form>
                         </div>
                         {{-- <div class="col-md-2">
@@ -71,6 +71,7 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
+                            <th scope="col">Nama</th>
                             <th scope="col">Bulan</th>
                             <th scope="col">Nominal</th>
                             <th scope="col">Detail</th>
@@ -80,6 +81,7 @@
                         @foreach ($laporan as $data)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td>{{ $data->tagihan->user->nama }}</td>
                             <td>{{ $data->tagihan->bulan }}</td>
                             <td>
                                 {{ $data->tagihan->nominal }}
