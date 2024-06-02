@@ -30,6 +30,11 @@ class UserDashboardController extends Controller
 
     public function store(Request $request)
     {
+        // validasi file yang dikirimkan dari form
+        $request->validate([
+            'bukti' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+        ]);
+
         $tagihan = new Tagihan;
         $tagihan->bulan = $request->input('bulan');
         $tagihan->nominal = $request->input('nominal');

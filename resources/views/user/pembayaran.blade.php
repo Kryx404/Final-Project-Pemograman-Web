@@ -30,7 +30,7 @@
                             <!-- Pilihan bulan -->
                             <div class="col-sm-12">
                                 <label for="bulan" class="form-label">Pilihan Bulan</label>
-                                <select class="form-select" id="bulan" name="bulan" required>
+                                <select class="form-select" id="bulan" name="bulan" required value="{{ old('bulan') }}">
                                     <option value="">Pilih Bulan</option>
                                     <option value="Januari">Januari</option>
                                     <option value="Februari">Februari</option>
@@ -54,7 +54,7 @@
                             <div class="col-sm-12">
                                 <label for="nominal" class="form-label">Nominal Pembayaran</label>
                                 <input type="text" class="form-control" id="nominal" name="nominal" required
-                                    onkeyup="formatRupiah(this, 'Rp. ')" placeholder="Masukan nominal pembayaran">
+                                    onkeyup="formatRupiah(this, 'Rp. ')" placeholder="Masukan nominal pembayaran" value="{{ old('nominal') }}">
                                 <div class="invalid-feedback">
                                     Masukan nominal pembayaran.
                                 </div>
@@ -67,13 +67,22 @@
                                         sertakan bukti pembayaran)</span></label>
                                 <input type="file" class="form-control" id="bukti" name="bukti" accept="image/*"
                                     required>
+                                @error('bukti')
+                                    <script>
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Oops...',
+                                            text: 'File harus berupa Gambar!',
+                                        })
+                                    </script>
+                                @enderror
                             </div>
 
                             <!-- Catatan Pembayaran -->
                             <div class="col-sm-12">
                                 <label for="catatan" class="form-label">Catatan Pembayaran</label>
                                 <input type="text" class="form-control" id="catatan" name="catatan"
-                                    placeholder="Masukan catatan pembayaran">
+                                    placeholder="Masukan catatan pembayaran" value="{{ old('catatan') }}">
                                 <div class="invalid-feedback">
                                     Masukan catatan pembayaran.
                                 </div>
