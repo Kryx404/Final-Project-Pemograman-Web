@@ -67,7 +67,7 @@
                         <th scope="col">Bulan</th>
                         <th scope="col">Status</th>
                         <th scope="col">Catatan</th>
-                        <th scope="col" style="width: 12%;">Aksi</th>
+                        <th scope="col">Tanggal Bayar</th>
                         <th scope="col">Bukti</th>
                     </tr>
                 </thead>
@@ -78,43 +78,29 @@
                             <td>{{ $data->nama }}</td>
                             <td>{{ $data->tagihan->first()->bulan ?? now()->format('F') }}</td>
                             <td
-                                style="{{ $data->tagihan->first() ? ($data->tagihan->first()->status == 'sudah terbayar' ? 'color:green' : 'color:red') : 'color:red' }}">
+                                style="{{ $data->tagihan->first() ? 'color:' . ($data->tagihan->first()->status === 'sudah terbayar' ? 'green' : 'red') : 'color:red' }}">
                                 {{ $data->tagihan->first() ? $data->tagihan->first()->status : 'belum terbayar' }}
                             </td>
 
                             <td>{{ $data->tagihan->first()->catatan ?? '-' }}</td>
 
                             <td>
-                                {{-- button untuk mengganti status tagihan --}}
-                                <div class="mb-1">
-                                    {{-- <a href='' class="btn btn-success "><i class="bi bi-check-lg"></i> Terbayar</a> --}}
-                                    <a href="{{ route('tagihan.update', $data->id) }}" class="btn btn-success"
-                                        onclick="event.preventDefault(); document.getElementById('update-status-{{ $data->id }}').submit();"><i
-                                            class="bi bi-check-lg"></i> Terbayar</a>
-                                    <form id="update-status-{{ $data->id }}"
-                                        action="{{ route('tagihan.update', $data->id) }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                        @method('PUT')
-                                        <input type="hidden" name="status" value="sudah terbayar">
-                                    </form>
-                                </div>
-
-
-                                {{-- button untuk mengingatkan warga --}}
-                                <div class="mt-1">
-                                    <a href='' class="btn btn-warning "><i class="bi bi-bell"></i> Ingatkan</a>
-                                </div>
+                                {{ $data->tagihan->first() ? $data->tagihan->first()->created_at->format('d-m-Y') : '-' }}
                             </td>
 
-                            <td>
-                                {{-- button untuk melihat bukti --}}
-                                <div class="mb-1">
-                                    <a href="{{ $data->tagihan->first() ? asset('storage/' . $data->tagihan->first()->bukti) : '#' }}"
-                                        class="btn btn-info "><i class="bi bi-file-earmark-text"></i> Lihat Bukti
-                                    </a>
-                                </div>
-                            </td>
+
+                            @if ($data->tagihan->first() && $data->tagihan->first()->status == 'sudah terbayar')
+                                <td>
+                                    {{-- button untuk melihat bukti --}}
+                                    <div class="mb-1">
+                                        <a href="{{ asset('storage/' . $data->tagihan->first()->bukti) }}"
+                                            class="btn btn-info "><i class="bi bi-file-earmark-text"></i> Lihat Bukti
+                                        </a>
+                                    </div>
+                                </td>
+                            @else
+                                <td>-</td>
+                            @endif
 
                         </tr>
                     @endforeach

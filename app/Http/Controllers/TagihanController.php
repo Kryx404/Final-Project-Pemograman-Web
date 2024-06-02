@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\StorePembayaranRequest;
-use App\Http\Requests\UpdatePembayaranRequest;
+use App\Http\Requests\StoreTagihanRequest;
+use App\Http\Requests\UpdateTagihanRequest;
+use Illuminate\Support\Facades\Session;
 
 //import model
 use App\Models\Tagihan;
@@ -67,7 +68,7 @@ class TagihanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePembayaranRequest $request)
+    public function store()
     {
         //
     }
@@ -75,7 +76,7 @@ class TagihanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pembayaran $pembayaran)
+    public function show(Tagihan $pembayaran)
     {
         //
     }
@@ -83,7 +84,7 @@ class TagihanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pembayaran $pembayaran)
+    public function edit(Tagihan $pembayaran)
     {
         //
     }
@@ -93,20 +94,15 @@ class TagihanController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $tagihan = Tagihan::findorfail($id);
-        $tagihan->update($request->all());
-
-        Session::flash('success', 'Data baru berhasil diedit.');
-        return redirect('/admin/tagihan');
-
+//
 }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pembayaran $pembayaran)
+    public function destroy(Tagihan $tagihan)
     {
-        //
+        $tagihan->delete();
+        return redirect('/admin/tagihan');
     }
 }
