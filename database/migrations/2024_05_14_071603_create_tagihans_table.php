@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             // $table->foreignId('laporan_id')->constrained();
-            $table->string('nominal')->default('0');
+            $table->integer('nominal');
             $table->string('catatan')->nullable();
             $table->enum('bulan', ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']);
             $table->enum('status', ['sudah terbayar', 'belum terbayar'])->default('belum terbayar');

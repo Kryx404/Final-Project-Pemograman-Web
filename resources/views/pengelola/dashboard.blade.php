@@ -35,35 +35,43 @@
                             <option value="Desember">Desember</option>
                         </select> --}}
                         <form action="{{ route('pengelola') }}" method="GET" class="w-100 ms-2">
-                                <select class="form-select" id="bulanFilter" name="bulan">
-                                    <option value="">Pilih Bulan...</option>
-                                    <option value="Januari" {{ request('bulan') == 'Januari' ? 'selected' : '' }}>Januari</option>
-                                    <option value="Februari" {{ request('bulan') == 'Februari' ? 'selected' : '' }}>Februari
-                                    </option>
-                                    <option value="Maret" {{ request('bulan') == 'Maret' ? 'selected' : '' }}>Maret</option>
-                                    <option value="April" {{ request('bulan') == 'April' ? 'selected' : '' }}>April</option>
-                                    <option value="Mei" {{ request('bulan') == 'Mei' ? 'selected' : '' }}>Mei</option>
-                                    <option value="Juni" {{ request('bulan') == 'Juni' ? 'selected' : '' }}>Juni</option>
-                                    <option value="Juli" {{ request('bulan') == 'Juli' ? 'selected' : '' }}>Juli</option>
-                                    <option value="Agustus" {{ request('bulan') == 'Agustus' ? 'selected' : '' }}>Agustus</option>
-                                    <option value="September" {{ request('bulan') == 'September' ? 'selected' : '' }}>September
-                                    </option>
-                                    <option value="Oktober" {{ request('bulan') == 'Oktober' ? 'selected' : '' }}>Oktober</option>
-                                    <option value="November" {{ request('bulan') == 'November' ? 'selected' : '' }}>November
-                                    </option>
-                                    <option value="Desember" {{ request('bulan') == 'Desember' ? 'selected' : '' }}>Desember
-                                    </option>
-                                </select>
-                                 {{-- <div class="col-md-2"> --}}
+                            <select class="form-select" id="bulanFilter" name="bulan">
+                                <option value="">Pilih Bulan...</option>
+                                <option value="Januari" {{ request('bulan') == 'Januari' ? 'selected' : '' }}>Januari</option>
+                                <option value="Februari" {{ request('bulan') == 'Februari' ? 'selected' : '' }}>Februari
+                                </option>
+                                <option value="Maret" {{ request('bulan') == 'Maret' ? 'selected' : '' }}>Maret</option>
+                                <option value="April" {{ request('bulan') == 'April' ? 'selected' : '' }}>April</option>
+                                <option value="Mei" {{ request('bulan') == 'Mei' ? 'selected' : '' }}>Mei</option>
+                                <option value="Juni" {{ request('bulan') == 'Juni' ? 'selected' : '' }}>Juni</option>
+                                <option value="Juli" {{ request('bulan') == 'Juli' ? 'selected' : '' }}>Juli</option>
+                                <option value="Agustus" {{ request('bulan') == 'Agustus' ? 'selected' : '' }}>Agustus</option>
+                                <option value="September" {{ request('bulan') == 'September' ? 'selected' : '' }}>September
+                                </option>
+                                <option value="Oktober" {{ request('bulan') == 'Oktober' ? 'selected' : '' }}>Oktober </option>
+                                <option value="November" {{ request('bulan') == 'November' ? 'selected' : '' }}>November
+                                </option>
+                                <option value="Desember" {{ request('bulan') == 'Desember' ? 'selected' : '' }}>Desember
+                                </option>
+                            </select>
+                            {{-- <div class="col-md-2"> --}}
                             <button type="button" class="btn btn-primary">Cari</button>
-                        {{-- </div> --}}
-                            </form>
-                        </div>
-                        {{-- <div class="col-md-2">
+                            {{-- </div> --}}
+                        </form>
+                    </div>
+                    {{-- <div class="col-md-2">
                             <button type="button" class="btn btn-primary">Cari</button>
                         </div> --}}
                 </div>
             </div>
+
+            {{-- chart js --}}
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+
+  {{-- link chart js --}}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
             <div class="tabel">
                 <table class="table">
@@ -79,17 +87,18 @@
                     </thead>
                     <tbody>
                         @foreach ($laporan as $data)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $data->tagihan->user->nama }}</td>
-                            <td>{{ $data->tagihan->bulan }}</td>
-                            <td>
-                                {{ $data->tagihan->nominal }}
-                            </td>
-                            <td>
-                                <a href="{{ asset('storage/' . $data->bukti) }}" target="_blank" class="btn btn-info"><i class="bi bi-file-earmark-text"></i> Lihat Bukti</a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $data->tagihan->user->nama }}</td>
+                                <td>{{ $data->tagihan->bulan }}</td>
+                                <td>
+                                    {{ $data->tagihan->nominal }}
+                                </td>
+                                <td>
+                                    <a href="{{ asset('storage/' . $data->bukti) }}" target="_blank"
+                                        class="btn btn-info"><i class="bi bi-file-earmark-text"></i> Lihat Bukti</a>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -100,6 +109,34 @@
 
     </main>
 
+    {{-- script chart js --}}
+    <script>
+        const ctx = document.getElementById('myChart');
+        const bulan = [];
+        const nominal = [];
+        @foreach ($tagihan as $data)
+            bulan.push('{{ $data->bulan }}');
+            nominal.push('{{ $data->nominal }}');
+        @endforeach
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: bulan,
+                datasets: [{
+                    label: 'Grafik Pembayaran',
+                    data: nominal,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
     @include('pengelola.partials.footer-pengelola')
 @endsection
-

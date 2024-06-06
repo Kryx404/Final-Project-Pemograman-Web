@@ -37,7 +37,9 @@ class UserDashboardController extends Controller
 
         $tagihan = new Tagihan;
         $tagihan->bulan = $request->input('bulan');
-        $tagihan->nominal = $request->input('nominal');
+        // untuk mengembalikan format dari rupiah ke integer sebelum di kirim ke database
+        $nominal = str_replace(['Rp', ','], '', $request->input('nominal'));
+        $tagihan->nominal = $nominal;
         $tagihan->catatan = $request->input('catatan');
         $tagihan->bukti = $request->file('bukti')->store('bukti_pembayaran');
         $tagihan->user_id = auth()->id();

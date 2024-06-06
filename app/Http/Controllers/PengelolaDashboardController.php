@@ -14,12 +14,14 @@ class PengelolaDashboardController extends Controller
 {
 
     public function index()
-    {
-        $laporan = Laporan::all();
-        return view('pengelola.dashboard', [
-            "title" => "pengelola",
-        ], compact('laporan'));
-    }
+{
+    $laporan = Laporan::all();
+    $tagihan = Tagihan::all();
+
+    return view('pengelola.dashboard', [
+        "title" => "pengelola",
+    ], compact('laporan', 'tagihan'));
+}
 
 
     public function pengelola(){
@@ -28,4 +30,6 @@ class PengelolaDashboardController extends Controller
         ]
         );
     }
+
+
 }
