@@ -3,10 +3,20 @@
     @include('pengelola.partials.navbar-pengelola')
     {{-- link css --}}
     <link rel="stylesheet" href="{{ asset('css/style-pengelola.css') }}">
+
+  {{-- link chart js --}}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <main>
 
         <div class="grafik">
             <h3 class="text-start mb-4 mt-5">Grafikasi Pembayaran</h3>
+
+
+               {{-- chart js --}}
+               <div>
+                <canvas id="myChart"></canvas>
+            </div>
+
             <div class="generation mb-4">
                 {{-- <h3 class="text-start mb-4 mt-5">Pencarian Berdasarkan Tahun dan Bulan</h3> --}}
                 <div class="row">
@@ -65,38 +75,39 @@
                 </div>
             </div>
 
-            {{-- chart js --}}
-            <div>
-                <canvas id="myChart"></canvas>
-            </div>
 
-  {{-- link chart js --}}
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+            {{-- tabel --}}
             <div class="tabel">
                 <table class="table">
                     <h4 id="tahunTabel"></h4>
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Nama</th>
                             <th scope="col">Bulan</th>
-                            <th scope="col">Nominal</th>
+                            <th scope="col">Total Pemasukan</th>
                             <th scope="col">Detail</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($laporan as $data)
+                        @foreach ($laporanPerBulan as $data)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $data->tagihan->user->nama }}</td>
-                                <td>{{ $data->tagihan->bulan }}</td>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $data['bulan'] }}</td>
+                                <td>{{ $data['total_nominal'] }}</td>
                                 <td>
-                                    {{ $data->tagihan->nominal }}
-                                </td>
-                                <td>
-                                    <a href="{{ asset('storage/' . $data->bukti) }}" target="_blank"
-                                        class="btn btn-info"><i class="bi bi-file-earmark-text"></i> Lihat Bukti</a>
+                                    @php
+                                        $details = $laporan->where('tagihan.bulan', $data['bulan']);
+                                        $detailIds = $details->pluck('id')->implode(',');
+                                    @endphp
+                                    @if ($details->count() > 1)
+                                        <a href="{{ route('pengelola.detail', $detailIds) }}"
+                                            class="btn btn-info">Lihat Detail</a>
+                                    @else
+                                        @foreach ($details as $item)
+                                            <a href="{{ route('pengelola.detail', $item->id) }}"
+                                                class="btn btn-info">Lihat Detail</a>
+                                        @endforeach
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -104,27 +115,36 @@
                 </table>
             </div>
 
-        </div>
-
 
     </main>
 
     {{-- script chart js --}}
     <script>
         const ctx = document.getElementById('myChart');
-        const bulan = [];
-        const nominal = [];
+        const bulanMap = {};
         @foreach ($tagihan as $data)
-            bulan.push('{{ $data->bulan }}');
-            nominal.push('{{ $data->nominal }}');
+            if (!bulanMap['{{ $data->bulan }}']) {
+                bulanMap['{{ $data->bulan }}'] = 0;
+            }
+            bulanMap['{{ $data->bulan }}'] += {{ $data->nominal }};
         @endforeach
+
+        const bulan = Object.keys(bulanMap);
+        const nominal = Object.values(bulanMap);
+
+        // Urutkan bulan sesuai urutan bulan
+        bulan.sort();
+
+        // Menyusun ulang data nominal sesuai urutan bulan
+        const nominalSorted = bulan.map(b => bulanMap[b]);
+
         new Chart(ctx, {
             type: 'line',
             data: {
                 labels: bulan,
                 datasets: [{
                     label: 'Grafik Pembayaran',
-                    data: nominal,
+                    data: nominalSorted,
                     borderWidth: 1
                 }]
             },

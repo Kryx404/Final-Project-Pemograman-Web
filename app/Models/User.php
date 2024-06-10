@@ -58,5 +58,10 @@ class User extends Authenticatable
         return $this->hasMany(Tagihan::class);
 }
 
+// untuk menghubungkan ke database laporan
+public function Laporan()
+{
+    return $this->hasMany(Laporan::class);
 
+}
 }

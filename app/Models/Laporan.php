@@ -19,9 +19,16 @@ protected $fillable = [
 
 protected $guarded = ['id'];
 
+// untuk menghubungkan ke database tagihan
 public function Tagihan()
 {
     return $this->belongsTo(Tagihan::class);
 }
+
+// untuk menghubungkan ke database user
+public function User()
+{
+    return $this->belongsTo(User::class);
 }
 
+}

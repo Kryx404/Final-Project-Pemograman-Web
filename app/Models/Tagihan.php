@@ -66,9 +66,13 @@ class Tagihan extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
+    // public function laporan()
+    // {
+    //     return $this->hasOne(Laporan::class);
+    // }
     public function laporan()
     {
-        return $this->hasOne(Laporan::class);
+        return $this->hasMany(Laporan::class);
     }
 }
 

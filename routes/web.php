@@ -58,6 +58,7 @@ Route::middleware(['auth', 'adminakses'])->group(function () {
 Route::middleware(['auth', 'pengelolaakses'])->group(function () {
 
 Route::get('/pengelola', [PengelolaDashboardController::class, 'index'])->name('pengelola');
+Route::get('/pengelola/detail/{id}', [PengelolaDashboardController::class, 'detail'])->name('pengelola.detail');
 // Route::get('/pengelola', [PengelolaDashboardController::class, 'pengelola']);
 
 });
