@@ -34,9 +34,7 @@
                     <img src="image/kegiatan1.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">KEGIATAN JALAN SEHAT 17 AGUSTUS 1945</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quasi ad
-                            molestias harum porro aut quae cum nihil quibusdam quod, similique repellat molestiae nulla
-                            eveniet beatae magni ea natus. Tenetur?</p>
+                        <p class="card-text">Kegiatan jalan sehat ini untuk memeperingati hari nasional 17 Agustus 1945 yg ke-78 yang diikuti oleh kurang lebih 153 orang dari warga Swan regency.</p>
                     </div>
                 </div>
             </div>
@@ -45,9 +43,7 @@
                     <img src="image/kegiatan2.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">KEGIATAN TAKBIR KELILING</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quasi ad
-                            molestias harum porro aut quae cum nihil quibusdam quod, similique repellat molestiae nulla
-                            eveniet beatae magni ea natus. Tenetur?</p>
+                        <p class="card-text">Kegiatan ini dilakukan setiap tahun tepat di 1 hari sebelum idul fitri 1700 masehi dimana seluruh masyarakat berkeliling dan melantunkan takbir di daerah Swan Recency</p>
 
                     </div>
                 </div>
@@ -57,9 +53,7 @@
                     <img src="image/kegiatan3.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">KEGIATAN PENGAJIAN</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quasi ad
-                            molestias harum porro aut quae cum nihil quibusdam quod, similique repellat molestiae nulla
-                            eveniet beatae magni ea natus. Tenetur?</p>
+                        <p class="card-text">Kegiatan pengajian ini dilakukan setiap malam tahun baru untuk menyambut awal tahun dengan lantunan doa.</p>
 
                     </div>
                 </div>

@@ -3,13 +3,13 @@
             <div class="row">
                 <div class="col-md-8">
                     <h5>Tentang Kami</h5>
-                    <p>Ini adalah deskripsi singkat tentang organisasi atau komunitas yang diwakili oleh website ini.</p>
+                    <p>Trash-P Adalah website untuk membantu Masyarakat membayar tagihan sampah setiap bulannya dengan mudah. Trash-P adalah webiste yang diciptakan oleh sekelompok mahasiswa Jurusan Sistem Informasi Universitas Pembangunan Nasional Veteran Jawa Timur. Dengan Trash-P ini diharapkan bisa memudahkan Masyarakat di Dusun Buncitan, Kabupaten Sidoarjo.</p>
                 </div>
             
                 <div class="col-md-3">
                     <h5>Kontak</h5>
-                    <p>Jalan Fiktif No. 123, Kota Fiktif, Negara Fiktif</p>
-                    <p>Email: info@contoh.com</p>
+                    <p>RT 21/RW 09, Swan Regency, Dsn. Buncitan, Kec. Sedati</p>
+                    <p>Email: Swanregency@gmail.com</p>
                     <p>Telp: +62 123 4567 8900</p>
                 </div>
             </div>
