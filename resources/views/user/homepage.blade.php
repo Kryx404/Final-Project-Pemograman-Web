@@ -18,18 +18,9 @@
                         echo '<h2>Selamat Pagi: ' . Auth::user()->nama . ' </h2>';
                     }
                 @endphp
-                <p class="pb-2 mt-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, repudiandae autem
-                    velit
-                    et
-                    odio numquam? Eveniet similique sequi expedita iusto, quasi mollitia dolor exercitationem quia culpa
-                    doloribus debitis nesciunt, qui molestias. Non debitis libero dignissimos quod minus nihil doloribus?
-                    Quasi
-                    doloribus dicta quia quos placeat quisquam beatae nemo molestiae ut nostrum, id nam saepe! Unde mollitia
-                    qui, ratione incidunt illo beatae officiis ad. Dolore, velit? Quas quibusdam a, hic accusantium
-                    voluptatum,
-                    id, omnis neque quod voluptatem maxime dolorum deserunt ipsum dolore sapiente necessitatibus doloribus
-                    reprehenderit beatae quia non nemo quaerat ea nesciunt obcaecati! Sapiente, accusantium eos reiciendis
-                    laborum similique reprehenderit.</p>
+                <p class="pb-2 mt-4">Kebersihan lingkungan adalah tanggung jawab kita bersama. Mari bergabung dalam upaya menjaga kebersihan lingkungan dengan membayar 
+                    iuran sampah secara rutin. Iuran yang Anda bayarkan akan digunakan untuk mendukung pengelolaan sampah yang lebih efektif, memastikan sampah terkelola dengan baik, dan mencegah pencemaran lingkungan. 
+                    Dengan kontribusi Anda, kita bisa menciptakan lingkungan yang lebih bersih, sehat, dan nyaman untuk semua. Bayar iuran sampah sekarang dan jadilah bagian dari solusi lingkungan yang berkelanjutan.</p>
             </div>
         </section>
 
