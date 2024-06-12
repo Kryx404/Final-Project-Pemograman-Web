@@ -42,8 +42,7 @@
 
             {{-- buttton pdf --}}
             <div class="d-flex justify-content-end">
-            <button class="btn btn-danger rounded-5 px-4 py-2 mt-3" onclick="window.location.href='/cetak-pdf';"><i class="bi bi-filetype-pdf me-2"></i>Cetak
-                PDF</button>
+            <a class="btn btn-danger rounded-5 px-4 py-2 mt-3" href="{{ route('pengelola.pdf') }}"><i class="bi bi-filetype-pdf me-2"></i>Cetak PDF</a>
             </div>
     </main>
 

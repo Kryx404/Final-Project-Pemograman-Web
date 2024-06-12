@@ -23,7 +23,10 @@ return Application::configure(basePath: dirname(__DIR__))
 
 
     })
+    // end middleware
 
      ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
+
+    // $app->register(\Barryvdh\DomPDF\ServiceProvider::class);

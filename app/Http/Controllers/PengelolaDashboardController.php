@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Tagihan;
 use App\Models\Laporan;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class PengelolaDashboardController extends Controller
@@ -77,6 +78,14 @@ $tagihan = tagihan::findorfail($id);
 
     }
 
+
+    public function view_pdf()
+{
+    $tagihan = Tagihan::all();
+
+    $pdf = PDF::loadView('pengelola.pdf', compact('tagihan'));
+    return $pdf->download('daftar-tagihan.pdf');
+}
 
 
 }

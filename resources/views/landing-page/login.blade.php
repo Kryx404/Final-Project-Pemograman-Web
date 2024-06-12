@@ -79,7 +79,7 @@
             </div>
         </form>
 
-        <small class="d-block text-center mt-3">Belum punya akun? <a href="/daftar">Daftar</a></small>
+        <small class="d-block text-center mt-3">Belum punya akun? <span class="text-decoration-underline text-primary">Hubungi Admin</span></small>
 
     </section>
 
