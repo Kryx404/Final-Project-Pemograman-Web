@@ -25,31 +25,9 @@
                     <button class="btn btn-primary" type="submit">Cari</button>
                 </div>
             </form>
-
-            {{-- @if ($warga->isEmpty())
-                <p class="text-danger">Data warga tidak ditemukan.</p>
-            @endif --}}
-            @if ($warga->isEmpty())
-                <script>
-                    Swal.fire("Data Tidak Ditemukan!");
-                </script>
-            @endif
-
         </div>
 
-        {{-- @if (Session::has('success'))
-            <div class="alert alert-success">
-                {{ Session::get('success') }}
-            </div>
-        @endif --}}
-
-        {{-- sweet alert --}}
-        @if (Session::has('success'))
-            <script>
-                Swal.fire("Data Berhasil Ditambahkan!");
-            </script>
-        @endif
-
+        {{-- tabel --}}
         <div class="table-warga">
             <table class="table">
                 <thead>
@@ -79,13 +57,13 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="button" class="btn btn-danger"
-                                        onclick="deleteData({{ $data->id }})"><i class="bi bi-trash"></i>
+                                        onclick="confirmDelete({{ $data->id }})"><i class="bi bi-trash"></i>
                                         Hapus</button>
                                 </form>
 
                                 {{-- sweet alert hapus --}}
                                 <script>
-                                    function deleteData(id) {
+                                    function confirmDelete(id) {
                                         Swal.fire({
                                             title: 'Apakah Anda Yakin?',
                                             text: "Data akan dihapus secara permanen!",
@@ -97,13 +75,14 @@
                                             cancelButtonText: 'Batal'
                                         }).then((result) => {
                                             if (result.isConfirmed) {
-                                                Swal.fire({
-                                                    title: "Berhasil!",
-                                                    text: "Data berhasil dihapus.",
-                                                    icon: "success"
-                                                });
+                                                deleteData(id);
                                             }
                                         })
+                                    }
+
+                                    function deleteData(id) {
+                                        const form = document.getElementById(`delete-form-${id}`);
+                                        form.submit();
                                     }
                                 </script>
                             </td>
@@ -112,6 +91,24 @@
                 </tbody>
             </table>
         </div>
+
+        {{-- sweet alert --}}
+        @if (session('success'))
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: "{{ session('success') }}",
+                });
+            </script>
+        @elseif ($warga->isEmpty())
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Data Tidak Ditemukan!',
+                });
+            </script>
+        @endif
 
     </main>
 
