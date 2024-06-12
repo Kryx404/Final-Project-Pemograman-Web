@@ -74,13 +74,13 @@
                                 <input type="file" class="form-control" id="bukti" name="bukti" accept="image/*"
                                     required>
                                 @error('bukti')
-                                    <script>
-                                        Swal.fire({
-                                            icon: 'error',
-                                            title: 'Oops...',
-                                            text: 'File harus berupa Gambar!',
-                                        })
-                                    </script>
+                                        <script>
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Oops...',
+                                                text: 'Harap upload file yang berupa gambar! Maximal 2 MB',
+                                            })
+                                        </script>
                                 @enderror
                             </div>
 
