@@ -41,7 +41,7 @@ Route::middleware(['auth', 'adminakses'])->group(function () {
     // Route::resource('/admin/tagihan', PembayaranController::class);
     // Route::get('/admin/tagihan', [AdminDashboardController::class, 'tagihan'])->name('admin.tagihan');
     Route::get('/admin/tagihan', [TagihanController::class, 'index'])->name('admin.tagihan');
-    Route::get('/admin/data-warga', [AdminDashboardController::class, 'datawarga']);
+    Route::put('/admin/tagihan/{id}', [TagihanController::class, 'updateStatus'])->name('admin.update-status-tagihan');
 
     Route::get('/admin/ubah-data/{id}', [AdminDashboardController::class, 'edit'])->name('admin.edit-data');
     Route::post('/admin/ubah-data/{id}', [AdminDashboardController::class, 'update'])->name('admin.edit-data.update');

@@ -43,7 +43,7 @@ class UserDashboardController extends Controller
         $tagihan->catatan = $request->input('catatan');
         $tagihan->bukti = $request->file('bukti')->store('bukti_pembayaran');
         $tagihan->user_id = auth()->id();
-        $tagihan->status = 'sudah terbayar';
+        $tagihan->status = 'Menunggu konfirmasi';
         $tagihan->save();
 
         // Redirect ke halaman yang diinginkan setelah data berhasil disimpan

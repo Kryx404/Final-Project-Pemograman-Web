@@ -69,6 +69,7 @@
                         <th scope="col">Catatan</th>
                         <th scope="col">Tanggal Bayar</th>
                         <th scope="col">Bukti</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,9 +78,15 @@
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $data->nama }}</td>
                             <td>{{ $data->tagihan->first()->bulan ?? now()->format('F') }}</td>
-                            <td
-                                style="{{ $data->tagihan->first() ? 'color:' . ($data->tagihan->first()->status === 'sudah terbayar' ? 'green' : 'red') : 'color:red' }}">
-                                {{ $data->tagihan->first() ? $data->tagihan->first()->status : 'belum terbayar' }}
+
+                            <td>
+                                @if ($data->tagihan->first())
+                                <button type="button" class="btn {{ $data->tagihan->first()->status_with_color['button'] }}" style="color: {{ $data->tagihan->first()->status_with_color['color'] }}">
+                                    {{ $data->tagihan->first()->status_with_color['status'] }}
+                                </button>
+                                @else
+                                    -
+                                @endif
                             </td>
 
                             <td>{{ $data->tagihan->first()->catatan ?? '-' }}</td>
@@ -89,9 +96,12 @@
                             </td>
 
 
-                            @if ($data->tagihan->first() && $data->tagihan->first()->status == 'sudah terbayar')
+                            {{-- button untuk melihat bukti --}}
+                            @if (
+                                $data->tagihan->first() &&
+                                    ($data->tagihan->first()->status == 'Menunggu Konfirmasi' ||
+                                        $data->tagihan->first()->status == 'Sudah Terbayar'))
                                 <td>
-                                    {{-- button untuk melihat bukti --}}
                                     <div class="mb-1">
                                         <a href="{{ asset('storage/' . $data->tagihan->first()->bukti) }}"
                                             class="btn btn-info "><i class="bi bi-file-earmark-text"></i> Lihat Bukti
@@ -101,6 +111,24 @@
                             @else
                                 <td>-</td>
                             @endif
+
+
+                            {{-- button untuk merubah data pada database kolom status --}}
+
+                            @if ($data->tagihan->first() && $data->tagihan->first()->status == 'Menunggu Konfirmasi')
+                                <td>
+                                    <form action="{{ route('admin.update-status-tagihan', $data->tagihan->first()->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-success"><i
+                                                class="bi bi-check-lg"></i></button>
+                                    </form>
+                                </td>
+                            @else
+                                <td>-</td>
+                            @endif
+
 
                         </tr>
                     @endforeach

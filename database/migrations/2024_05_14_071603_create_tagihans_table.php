@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('nominal');
             $table->string('catatan')->nullable();
             $table->enum('bulan', ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']);
-            $table->enum('status', ['sudah terbayar', 'belum terbayar'])->default('belum terbayar');
+            $table->enum('status', ['Sudah Terbayar', 'Menunggu Konfirmasi', 'Belum Terbayar'])->default('Belum Terbayar');
             $table->string('bukti');
             $table->timestamps();
             // $table->string('bulan')->default(now()->format('F')); //buat default mengikuti bulan

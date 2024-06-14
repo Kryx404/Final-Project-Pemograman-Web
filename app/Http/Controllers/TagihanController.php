@@ -46,7 +46,17 @@ class TagihanController extends Controller
         // Mengurutkan pengguna berdasarkan status pembayaran
         $sortedUsers = $users->sortBy(function ($user) {
             $firstTagihan = $user->tagihan->first();
-            return $firstTagihan ? ($firstTagihan->status == 'sudah terbayar' ? 0 : 1) : 1;
+            if ($firstTagihan) {
+                if ($firstTagihan->status == 'Menunggu Konfirmasi') {
+                    return 0;
+                } elseif ($firstTagihan->status == 'Sudah Terbayar') {
+                    return 1;
+                } else {
+                    return 2;
+                }
+            } else {
+                return 3;
+            }
         });
 
         return view('admin.tagihan', [
@@ -96,6 +106,34 @@ class TagihanController extends Controller
     {
 //
 }
+
+    /**
+     * Update the status to 'sudah terbayar'
+     */
+    public function updateStatus($id)
+    {
+        // Dapatkan tagihan berdasarkan $id
+        $tagihan = Tagihan::findOrFail($id);
+
+        // Perbarui status tagihan
+        $tagihan->status = 'Sudah Terbayar';
+        $tagihan->save();
+
+        // Redirect atau berikan respons yang sesuai
+        return redirect()->back()->with('success', 'Status tagihan berhasil diperbarui.');
+    }
+
+    // public function updateStatus(Request $request, Tagihan $tagihan)
+    // {
+    //     $tagihan->update([
+    //         'status' => 'Sudah Terbayar',
+    //         'user_id' => auth()->id(),  // tambahkan user_id saat perbarui status
+    //     ]);
+
+    //     // Redirect atau berikan response sesuai kebutuhan
+    //     return redirect()->back()->with('success', 'Status tagihan berhasil diperbarui.');
+    // }
+
 
     /**
      * Remove the specified resource from storage.

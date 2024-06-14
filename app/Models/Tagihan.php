@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use App\Models\Laporan;
 
 /**
@@ -21,7 +22,6 @@ class Tagihan extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
         'pembayaran_id',
         'status',
     ];
@@ -31,7 +31,10 @@ class Tagihan extends Model
      *
      * @var array<int, string>
      */
-    protected $guarded = ['id'];
+    protected $guarded = [
+        'id',
+        'user_id',
+    ];
 
     /**
      * The events to listen for.
@@ -50,6 +53,35 @@ class Tagihan extends Model
             ]);
         });
     }
+
+    public function getStatusWithColorAttribute()
+    {
+        $status = $this->status;
+        $color = 'inherit';
+        $button = '';
+
+        switch ($status) {
+            case 'Sudah Terbayar':
+                $color = 'white';
+                $button = 'btn btn-success rounded-pill ';
+                break;
+            case 'Belum Terbayar':
+                $color = 'white';
+                $button = 'btnbtn-danger rounded-pill';
+                break;
+            case 'Menunggu Konfirmasi':
+                $color = 'white';
+                $button = 'btn btn-primary rounded-pill';
+                break;
+        }
+
+        return [
+            'status' => $status,
+            'color' => $color,
+            'button' => $button,
+        ];
+    }
+
 
     /**
      * Get the user that owns the Tagihan
