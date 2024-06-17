@@ -16,7 +16,7 @@
         <div class="data-warga">
             <h3 class="text-start mb-4 mt-5">Tambah data baru</h3>
 
-            
+
             <form action="/admin/data-baru" method="post">
                 @csrf
                 <div class="mb-3">
@@ -27,6 +27,7 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+                
                 <div class="mb-3">
                     <label for="username" class="form-label">Username:</label>
                     <input type="text" class="form-control @error('username') is-invalid @enderror" id="username"

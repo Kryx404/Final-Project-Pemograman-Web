@@ -62,13 +62,27 @@ class AdminDashboardController extends Controller
 
     public function update(Request $request, $id)
     {
-        $warga = User::findorfail($id);
-        $warga->update($request->all());
+        $warga = User::findOrFail($id);
+        $warga->password = bcrypt($request->input('new_password')); // Ubah password
+        $warga->update($request->except('new_password')); // Perbarui data lainnya
+        $warga->save();
 
         Session::flash('success', 'Data baru berhasil diedit.');
         return redirect('/admin');
     }
 
+
+    public function resetPassword(Request $request, $id)
+    {
+        // Periksa dan validasi request
+        $warga = User::findOrFail($id);
+
+        // Reset password ke default
+        $warga->password = Hash::make('12345678'); // Simpan password yang ter-hash
+        $warga->save();
+
+        return redirect()->back()->with('success', 'Password berhasil direset');
+    }
 
 
     public function show()

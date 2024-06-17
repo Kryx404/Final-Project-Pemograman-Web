@@ -46,6 +46,8 @@ Route::middleware(['auth', 'adminakses'])->group(function () {
     Route::get('/admin/ubah-data/{id}', [AdminDashboardController::class, 'edit'])->name('admin.edit-data');
     Route::post('/admin/ubah-data/{id}', [AdminDashboardController::class, 'update'])->name('admin.edit-data.update');
 
+    Route::post('/admin/{id}/reset-password', [AdminDashboardController::class, 'resetPassword'])->name('admin.reset-password');
+
     Route::resource('/admin', AdminDashboardController::class,);
     Route::post('/admin/data-baru', [AdminDashboardController::class, 'store'])->name('admin.data-baru.store');
     Route::delete('/admin/data-baru/{id}', [AdminDashboardController::class, 'destroy'])->name('admin.data-baru.destroy');
