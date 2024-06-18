@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 
+
 //import model
 use App\Models\Tagihan;
 use App\Models\User;
 use App\Models\Laporan;
+use Illuminate\Support\Facades\Hash;
 
 class UserDashboardController extends Controller
 {
@@ -21,36 +23,37 @@ class UserDashboardController extends Controller
         ], compact('users'));
     }
 
-    public function pembayaran()
+
+    public function profil()
     {
-        return view('user.pembayaran', [
-            "title" => "pembayaran"
+        return view('user.profil', [
+            "title" => "profil"
         ]);
     }
+
 
     public function store(Request $request)
     {
-        // validasi file yang dikirimkan dari form
-        $request->validate([
-            'bukti' => 'required|image|mimes:jpg,png,jpeg|max:2048',
-        ]);
+        $user = auth()->user();
+        $password = $request->password;
+        $newPassword = $request->newPassword;
 
-        $tagihan = new Tagihan;
-        $tagihan->bulan = $request->input('bulan');
-        // untuk mengembalikan format dari rupiah ke integer sebelum di kirim ke database
-        $nominal = str_replace(['Rp', ','], '', $request->input('nominal'));
-        $tagihan->nominal = $nominal;
-        $tagihan->catatan = $request->input('catatan');
-        $tagihan->bukti = $request->file('bukti')->store('bukti_pembayaran');
-        $tagihan->user_id = auth()->id();
-        $tagihan->status = 'Menunggu konfirmasi';
-        $tagihan->save();
+        if (Hash::check($password, $user->password)) {
+            $user->update(['password' => bcrypt($newPassword)]);
+            Session::flash('success', 'Password berhasil diubah');
+        } else {
+            Session::flash('error', 'Password lama salah');
+        }
 
-        // Redirect ke halaman yang diinginkan setelah data berhasil disimpan
-        Session::flash('success', 'Data baru berhasil ditambahkan.');
         return redirect()->back();
     }
 
+    public function update(Request $request){
+        $user = auth()->user();
+        $user->update($request->except('_token'));
+        Session::flash('success', 'Profil berhasil diubah');
+        return redirect()->back();
+    }
 
 
 }

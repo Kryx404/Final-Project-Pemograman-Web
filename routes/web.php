@@ -5,9 +5,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PengelolaDashboardController;
 use App\Http\Controllers\TagihanController;
-use App\Http\Controllers\WargaController;
 
 
 // start landing page
@@ -27,8 +27,12 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/user', [UserDashboardController::class, 'index'])->name('user')->middleware('auth');
-    Route::get('/pembayaran', [UserDashboardController::class, 'pembayaran'])->name('pembayaran');
-    Route::post('/pembayaran', [UserDashboardController::class, 'store'])->name('pembayaran.store');
+
+Route::get('/user/profil', [UserDashboardController::class, 'profil'])->name('user.profil');
+Route::post('/user/profil', [UserDashboardController::class, 'update'])->name('user.profil.update');
+
+    Route::get('/pembayaran', [PembayaranController::class, 'pembayaran'])->name('pembayaran');
+    Route::post('/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
 });
 // end user
 
