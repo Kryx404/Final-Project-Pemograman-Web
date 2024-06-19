@@ -80,9 +80,11 @@
 
                             <td>
                                 @if ($data->tagihan->first())
-                                <button type="button" class="btn {{ $data->tagihan->first()->status_with_color['button'] }}" style="color: {{ $data->tagihan->first()->status_with_color['color'] }}">
-                                    {{ $data->tagihan->first()->status_with_color['status'] }}
-                                </button>
+                                    <button type="button"
+                                        class="btn {{ $data->tagihan->first()->status_with_color['button'] }}"
+                                        style="color: {{ $data->tagihan->first()->status_with_color['color'] }}">
+                                        {{ $data->tagihan->first()->status_with_color['status'] }}
+                                    </button>
                                 @else
                                     -
                                 @endif
@@ -94,41 +96,41 @@
                                 {{ $data->tagihan->first() ? $data->tagihan->first()->created_at->format('d-m-Y') : '-' }}
                             </td>
 
+                        <td>
+                            @if ($data->tagihan->first())
+                                <!-- Button untuk menampilkan pop up -->
+                                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#buktiModal{{ $data->id }}">
+                                    Lihat Detail
+                                </button>
 
-
-
-                            {{-- button untuk melihat bukti --}}
-                            @if (
-                                $data->tagihan->first() &&
-                                    ($data->tagihan->first()->status == 'Menunggu Konfirmasi' ||
-                                        $data->tagihan->first()->status == 'Sudah Terbayar'))
-                                <td>
-                                    <div class="mb-1">
-                                        <a href="{{ asset('storage/' . $data->tagihan->first()->bukti) }}"
-                                            class="btn btn-info "><i class="bi bi-file-earmark-text"></i> Lihat Bukti
-                                        </a>
+                                <!-- popup -->
+                                <div class="modal fade" id="buktiModal{{ $data->id }}" tabindex="-1" aria-labelledby="buktiModalLabel{{ $data->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="buktiModalLabel{{ $data->id }}">Bukti Pembayaran</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="{{ asset('storage/' . $data->tagihan->first()->bukti) }}" class="img-fluid" alt="Bukti Pembayaran">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <form action="{{ route('admin.update-status-tagihan', $data->tagihan->first()->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button type="submit" class="btn btn-success">Konfirmasi Pembayaran</button>
+                                                </form>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </td>
+                                </div>
                             @else
-                                <td>-</td>
+                                -
                             @endif
+                        </td>
 
 
-                            {{-- button untuk merubah data pada database kolom status --}}
-
-                            @if ($data->tagihan->first() && $data->tagihan->first()->status == 'Menunggu Konfirmasi')
-                                <td>
-                                    <form action="{{ route('admin.update-status-tagihan', $data->tagihan->first()->id) }}"
-                                        method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <button type="submit" class="btn btn-success"><i
-                                                class="bi bi-check-lg"></i></button>
-                                    </form>
-                                </td>
-                            @else
-                                <td>-</td>
-                            @endif
 
 
                         </tr>

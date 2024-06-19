@@ -20,11 +20,6 @@ class TagihanController extends Controller
     public function index()
     {
 
-        // $tagihan = Tagihan::all();
-        // $datapembayaran = Tagihan::with('user')->get();
-        // return view('admin.tagihan',[
-        //     "title" => "tagihan"
-        // ], compact('tagihan', 'datapembayaran'));
 
         $users = User::with('tagihan')->whereNotIn('role', ['admin', 'pengelola'])->get();
 
@@ -66,6 +61,16 @@ class TagihanController extends Controller
 
 
     }
+
+    public function detail($id)
+{
+    $tagihan = Tagihan::findOrFail($id);
+
+    return view('admin.detail', [
+        "title" => "Detail Tagihan",
+        'tagihan' => $tagihan
+    ]);
+}
 
     /**
      * Show the form for creating a new resource.

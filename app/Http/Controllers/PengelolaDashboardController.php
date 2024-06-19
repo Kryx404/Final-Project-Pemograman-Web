@@ -33,6 +33,11 @@ public function index()
     // Ambil semua data tagihan
     $tagihan = Tagihan::all();
 
+     // Ambil semua data user
+     $users = User::whereNotIn('role', ['admin', 'pengelola'])->get();
+
+     $no = 1;
+
     // Kumpulkan data berdasarkan bulan dan hitung total nominal
     $laporanPerBulan = $tagihan->groupBy('bulan')
                             ->map(function ($items) {
@@ -44,9 +49,11 @@ public function index()
                             ->values()
                             ->toArray();
 
+
+
     return view('pengelola.dashboard', [
         "title" => "pengelola",
-    ], compact('laporan', 'tagihan', 'laporanPerBulan'));
+    ], compact('laporan', 'tagihan', 'laporanPerBulan', 'users', 'no'));
 
 }
 
@@ -79,12 +86,20 @@ $tagihan = tagihan::findorfail($id);
     }
 
 
-    public function view_pdf()
+    public function pdf_terbayar()
 {
-    $tagihan = Tagihan::all();
+    $tagihan = Tagihan::where('status', 'Sudah Terbayar')->get();
 
-    $pdf = PDF::loadView('pengelola.pdf', compact('tagihan'));
-    return $pdf->download('daftar-tagihan.pdf');
+    $pdf = PDF::loadView('pengelola.pdf-terbayar', compact('tagihan'));
+    return $pdf->download('Tagihan Terbayar.pdf');
+}
+
+    public function pdf_menunggu()
+{
+    $tagihan = Tagihan::where('status', 'Menunggu Konfirmasi')->get();
+
+    $pdf = PDF::loadView('pengelola.pdf-menunggu', compact('tagihan'));
+    return $pdf->download('Tagihan Pending.pdf');
 }
 
 

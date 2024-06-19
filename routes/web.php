@@ -65,7 +65,8 @@ Route::middleware(['auth', 'pengelolaakses'])->group(function () {
 
 Route::get('/pengelola', [PengelolaDashboardController::class, 'index'])->name('pengelola');
 Route::get('/pengelola/detail/{id}', [PengelolaDashboardController::class, 'detail'])->name('pengelola.detail');
-Route::get('/pengelola/pdf', [PengelolaDashboardController::class, 'view_pdf'])->name('pengelola.pdf');
+Route::get('/pengelola/pdf-terbayar', [PengelolaDashboardController::class, 'pdf_terbayar'])->name('pengelola.pdf-terbayar');
+Route::get('/pengelola/pdf-menunggu', [PengelolaDashboardController::class, 'pdf_menunggu'])->name('pengelola.pdf-menunggu');
 
 });
 // end pengelola

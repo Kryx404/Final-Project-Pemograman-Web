@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Daftar Tagihan</title>
+    <title>Laporan Bulanan</title>
     <style>
         /* Gaya CSS untuk PDF */
         table {
@@ -24,13 +24,14 @@
 </head>
 
 <body>
-    <h1>Daftar Tagihan</h1>
+    <h1>Laporan Pembayaran</h1>
     <table>
         <thead>
             <tr>
-                <th>ID</th>
+                <th>No</th>
                 <th>Nama</th>
                 <th>Nominal</th>
+                <th>Bulan</th>
                 <th>Tanggal Bayar</th>
                 <th>Status</th>
             </tr>
@@ -38,10 +39,11 @@
         <tbody>
             @foreach ($tagihan as $item)
                 <tr>
-                    <td>{{ $item->id }}</td>
+                    <td scope="row">{{ $loop->iteration }}</td>
                     <td>{{ $item->user->nama }}</td>
                     <td>{{ $item->nominal }}</td>
-                    <td>{{ $item->created_at }}</td>
+                    <td>{{ $item->bulan }}</td>
+                    <td>{{ $item->created_at->format('d-m-Y') }}</td>
                     <td>{{ $item->status }}</td>
                 </tr>
             @endforeach

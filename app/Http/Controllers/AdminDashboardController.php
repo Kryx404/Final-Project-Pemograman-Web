@@ -16,13 +16,6 @@ class AdminDashboardController extends Controller
     {
         // dd(request('search'));
 
-        // $warga = User::latest();
-        // if(request('search')){
-        //     $warga->where('nama', 'like', '%'. request('search'). '%')
-        //     ->orWhere('username', 'like', '%'. request('search'). '%')
-        //     ->orWhere('alamat', 'like', '%'. request('search'). '%');
-        // }
-
         //untuk mengecualikan user dengan role admin dan pengelola
         $warga = User::whereNotIn('role', ['admin', 'pengelola'])->latest();
         if(request('search')){
@@ -39,14 +32,6 @@ class AdminDashboardController extends Controller
         ], compact('warga'));
     }
 
-
-    // public function tagihan()
-    // {
-    //     return view('admin.tagihan',[
-    //         "title" => "tagihan"
-    //     ]
-    //     );
-    // }
 
 
     public function edit($id)
