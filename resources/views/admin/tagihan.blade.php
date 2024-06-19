@@ -68,8 +68,7 @@
                         <th scope="col">Status</th>
                         <th scope="col">Catatan</th>
                         <th scope="col">Tanggal Bayar</th>
-                        <th scope="col">Bukti</th>
-                        <th scope="col">Aksi</th>
+                        <th scope="col">Detail</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,6 +93,8 @@
                             <td>
                                 {{ $data->tagihan->first() ? $data->tagihan->first()->created_at->format('d-m-Y') : '-' }}
                             </td>
+
+
 
 
                             {{-- button untuk melihat bukti --}}
