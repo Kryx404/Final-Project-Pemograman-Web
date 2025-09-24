@@ -66,4 +66,5 @@ Website ini dibangun menggunakan **Laravel** dengan integrasi database dan sudah
 
 📬 Kontak
 Muhammad Rifki Syahada
-[![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/Kryx404)
+
+[![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/Kryx404) @Kryx404
